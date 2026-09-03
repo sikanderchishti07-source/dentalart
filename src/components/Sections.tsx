@@ -1,8 +1,11 @@
 import type { ComponentType } from "react";
+import { Link } from "react-router-dom";
+import { SERVICE_PAGES } from "../serviceContent";
 import { SERVICES, STATS, REASONS, CLINIC, type Service } from "../data";
 import { Reveal, CountUp, Eyebrow } from "../ui";
 import {
   SparkleIcon,
+  ToothIcon,
   WhitenIcon,
   ImplantIcon,
   BracesIcon,
@@ -73,21 +76,44 @@ export function Marquee() {
 /* ═══════════════════ STATS BAND ═══════════════════ */
 
 export function Stats() {
+  const STAT_ICONS = [BadgeIcon, ShieldIcon, ToothIcon, StarIcon];
+
   return (
-    <section aria-label="Clinic achievements" className="relative bg-deep overflow-hidden">
+    <section aria-label="Clinic at a glance" className="relative bg-deep overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(50rem_30rem_at_15%_-20%,rgba(2,136,209,0.22),transparent_60%),radial-gradient(40rem_26rem_at_95%_130%,rgba(129,199,132,0.14),transparent_60%)]" aria-hidden="true" />
-      <div className="relative max-w-7xl mx-auto px-6 lg:px-10 py-14 sm:py-16">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-y-10 gap-x-6">
-          {STATS.map((s, i) => (
-            <Reveal key={s.label} delay={i * 110} className="relative pl-5 sm:pl-7">
-              <span className="absolute left-0 top-1.5 bottom-1.5 w-px bg-gradient-to-b from-sky-brand/60 to-transparent" aria-hidden="true" />
-              <p className="font-display font-semibold text-[38px] sm:text-[46px] leading-none text-paper tracking-tight">
-                <CountUp target={s.value} suffix={s.suffix} decimals={s.decimals} />
-              </p>
-              <p className="mt-2.5 text-[13.5px] font-extrabold uppercase tracking-[0.14em] text-sky-brand">{s.label}</p>
-              <p className="text-[12.5px] font-semibold text-paper/45 mt-0.5">{s.sub}</p>
-            </Reveal>
-          ))}
+      <div className="absolute inset-0 opacity-[0.28] bg-[linear-gradient(rgba(79,195,247,0.06)_1px,transparent_1px),linear-gradient(90deg,rgba(79,195,247,0.06)_1px,transparent_1px)] bg-[size:64px_64px] [mask-image:radial-gradient(50rem_24rem_at_50%_50%,black,transparent_78%)]" aria-hidden="true" />
+
+      <div className="relative max-w-7xl mx-auto px-6 lg:px-10 py-9 lg:py-10">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-5 gap-y-7 lg:gap-x-0">
+          {STATS.map((s, i) => {
+            const Icon = STAT_ICONS[i] ?? StarIcon;
+            return (
+              <Reveal
+                key={s.label}
+                delay={i * 90}
+                className="relative flex items-center gap-3.5 lg:px-7 lg:first:pl-0 lg:last:pr-0"
+              >
+                {i > 0 && (
+                  <span
+                    className="absolute inset-y-0.5 left-0 hidden lg:block w-px bg-gradient-to-b from-transparent via-sky-brand/25 to-transparent"
+                    aria-hidden="true"
+                  />
+                )}
+                <span className="shrink-0 w-[38px] h-[38px] rounded-[14px] border border-sky-brand/20 bg-sky-brand/10 text-sky-brand grid place-items-center">
+                  <Icon className="w-[19px] h-[19px]" />
+                </span>
+                <div className="min-w-0">
+                  <p className="font-display font-semibold text-[27px] leading-none text-paper tracking-tight">
+                    <CountUp target={s.value} suffix={s.suffix} decimals={s.decimals} />
+                  </p>
+                  <p className="mt-1.5 text-[11px] font-extrabold uppercase tracking-[0.13em] text-sky-brand">
+                    {s.label}
+                  </p>
+                  <p className="text-[11px] font-semibold text-paper/40">{s.sub}</p>
+                </div>
+              </Reveal>
+            );
+          })}
         </div>
       </div>
     </section>
@@ -186,6 +212,9 @@ export function WhyUs() {
 /* ═══════════════════ SERVICES (editorial index) ═══════════════════ */
 
 export function Services() {
+  const slugFor = (icon: Service["icon"]) =>
+    SERVICE_PAGES.find((p) => p.icon === icon)?.slug;
+
   const book = (service: string) => {
     window.dispatchEvent(new CustomEvent("dac:service", { detail: service }));
     document.getElementById("booking")?.scrollIntoView({ behavior: "smooth" });
@@ -239,14 +268,25 @@ export function Services() {
                     <span className="hidden md:inline-block rounded-full bg-foam px-3 py-1 text-[10.5px] font-extrabold uppercase tracking-[0.12em] text-primary-deep">
                       {s.meta}
                     </span>
-                    <button
-                      onClick={() => book(s.id)}
-                      aria-label={`Book ${s.title}`}
-                      className="inline-flex items-center gap-2 rounded-full border-[1.5px] border-ink/15 px-4 py-2 text-[12.5px] font-extrabold text-ink transition-all duration-300 hover:bg-ink hover:text-paper hover:border-ink group-hover:border-primary/40"
-                    >
-                      Book
-                      <ArrowRightIcon className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />
-                    </button>
+                    {slugFor(s.icon) ? (
+                      <Link
+                        to={`/${slugFor(s.icon)}`}
+                        aria-label={`Read about ${s.title}`}
+                        className="inline-flex items-center gap-2 rounded-full border-[1.5px] border-ink/15 px-4 py-2 text-[12.5px] font-extrabold text-ink transition-all duration-300 hover:border-ink hover:bg-ink hover:text-paper group-hover:border-primary/40"
+                      >
+                        Learn more
+                        <ArrowRightIcon className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />
+                      </Link>
+                    ) : (
+                      <button
+                        onClick={() => book(s.id)}
+                        aria-label={`Book ${s.title}`}
+                        className="inline-flex items-center gap-2 rounded-full border-[1.5px] border-ink/15 px-4 py-2 text-[12.5px] font-extrabold text-ink transition-all duration-300 hover:border-ink hover:bg-ink hover:text-paper group-hover:border-primary/40"
+                      >
+                        Book
+                        <ArrowRightIcon className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />
+                      </button>
+                    )}
                   </div>
                 </article>
               </Reveal>
