@@ -44,7 +44,7 @@ export default function Hero() {
       <div className="relative lg:min-h-[640px]">
         {/* Photo panel — diagonal edge on desktop, full-width band on mobile */}
         <div
-          className="relative h-[300px] sm:h-[380px] lg:absolute lg:inset-y-0 lg:right-0 lg:h-auto lg:w-[52%]"
+          className="relative mt-[70px] h-[280px] sm:h-[360px] lg:mt-0 lg:absolute lg:inset-y-0 lg:right-0 lg:h-auto lg:w-[52%]"
           aria-hidden="true"
         >
           <div className="absolute inset-0 lg:[clip-path:polygon(14%_0,100%_0,100%_100%,0_100%)]">
@@ -68,7 +68,7 @@ export default function Hero() {
 
         {/* Copy column */}
         <div className="relative mx-auto max-w-7xl px-6 lg:px-10">
-          <div className="max-w-[36rem] py-14 lg:py-24">
+          <div className="max-w-[36rem] pb-14 pt-10 lg:pb-24 lg:pt-36">
             <span className="mb-7 inline-flex items-center gap-2.5 rounded-full border border-mint/40 bg-mint/10 px-4 py-1.5">
               <span className="pulse-ring relative h-2 w-2 rounded-full bg-moss text-moss" />
               <span className="text-[11px] font-extrabold tracking-[0.2em] text-moss">
