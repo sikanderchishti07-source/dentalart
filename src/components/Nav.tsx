@@ -27,7 +27,7 @@ export default function Nav() {
   const [active, setActive] = useState<string>("");
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
+    const onScroll = () => setScrolled(window.scrollY > 260);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -146,12 +146,20 @@ export default function Nav() {
             ))}
           </ul>
 
-          {/* Actions — WhatsApp first so it can never sit under the book pill */}
-          <div className="flex shrink-0 items-center gap-2.5">
+          {/* Actions — hidden while the hero is on screen (its own buttons are
+              visible there), revealed once the user scrolls past it */}
+          <div
+            className={`flex shrink-0 items-center gap-2.5 transition-all duration-400 ${
+              scrolled
+                ? "translate-y-0 opacity-100"
+                : "pointer-events-none -translate-y-1 opacity-0 lg:invisible"
+            }`}
+          >
             <a
               href={CLINIC.whatsappHref}
               target="_blank"
               rel="noopener noreferrer"
+              tabIndex={scrolled ? 0 : -1}
               className="hidden items-center gap-2 whitespace-nowrap rounded-full bg-wa/[0.12] px-[18px] py-2.5 text-[13px] font-bold text-moss transition-colors duration-300 hover:bg-wa/20 md:inline-flex"
             >
               <WhatsAppIcon className="h-[17px] w-[17px] shrink-0" />
@@ -159,6 +167,7 @@ export default function Nav() {
             </a>
             <a
               href="#booking"
+              tabIndex={scrolled ? 0 : -1}
               className="group hidden items-center gap-2 rounded-full bg-ink py-2.5 pl-5 pr-2.5 text-[13px] font-bold text-paper transition-all duration-300 hover:-translate-y-0.5 hover:bg-primary hover:shadow-[0_10px_24px_-10px_rgba(2,136,209,0.7)] sm:inline-flex"
             >
               Book Appointment
@@ -166,15 +175,17 @@ export default function Nav() {
                 <ArrowRightIcon className="h-3 w-3 text-sky-brand" />
               </span>
             </a>
-            <button
-              onClick={() => setOpen(true)}
-              aria-label="Open menu"
-              aria-expanded={open}
-              className="grid h-10 w-10 place-items-center rounded-full border border-foam bg-white/80 text-ink transition-colors hover:bg-foam lg:hidden"
-            >
-              <MenuIcon />
-            </button>
           </div>
+
+          {/* Burger stays visible at all times */}
+          <button
+            onClick={() => setOpen(true)}
+            aria-label="Open menu"
+            aria-expanded={open}
+            className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-foam bg-white/80 text-ink transition-colors hover:bg-foam lg:hidden"
+          >
+            <MenuIcon />
+          </button>
         </div>
       </nav>
 
