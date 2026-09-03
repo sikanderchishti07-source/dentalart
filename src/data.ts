@@ -1,5 +1,5 @@
 /* ──────────────────────────────────────────────────────────────────
-   DentalArt Care — central content model
+   DentalArt Care, central content model
    ────────────────────────────────────────────────────────────────── */
 
 export const CLINIC = {
@@ -47,7 +47,7 @@ export const SERVICES: Service[] = [
     id: "Teeth Whitening",
     num: "01",
     title: "Teeth Whitening",
-    desc: "Professional in-office whitening lifts years of stains by up to 8 shades in a single visit — enamel-safe, fast and long-lasting.",
+    desc: "Professional in-office whitening lifts years of stains by up to 8 shades in a single visit. Enamel safe, fast and long lasting.",
     meta: "60 min · Single visit",
     icon: "whiten",
   },
@@ -55,7 +55,7 @@ export const SERVICES: Service[] = [
     id: "Dental Implants",
     num: "02",
     title: "Dental Implants",
-    desc: "Titanium implants that look, feel and function exactly like natural teeth — the permanent answer to missing teeth, placed by our oral surgeon.",
+    desc: "Titanium implants that look, feel and function exactly like natural teeth. The permanent answer to missing teeth, placed by our oral surgeon.",
     meta: "Lifetime solution",
     icon: "implant",
   },
@@ -63,7 +63,7 @@ export const SERVICES: Service[] = [
     id: "Braces & Orthodontics",
     num: "03",
     title: "Braces & Orthodontics",
-    desc: "Fixed metal or ceramic braces and virtually invisible clear aligners — customised plans for every age, supervised by our FCPS orthodontist.",
+    desc: "Fixed metal or ceramic braces and virtually invisible clear aligners, with customised plans for every age, supervised by our FCPS orthodontist.",
     meta: "Metal · Ceramic · Aligners",
     icon: "braces",
   },
@@ -71,7 +71,7 @@ export const SERVICES: Service[] = [
     id: "Root Canal Therapy",
     num: "04",
     title: "Root Canal Therapy",
-    desc: "Modern rotary endodontics saves your natural tooth and ends the pain — most patients are surprised by how comfortable the procedure feels.",
+    desc: "Modern rotary endodontics saves your natural tooth and ends the pain. Most patients are surprised by how comfortable the procedure feels.",
     meta: "Pain-free protocol",
     icon: "rootcanal",
   },
@@ -87,7 +87,7 @@ export const SERVICES: Service[] = [
     id: "Porcelain Veneers",
     num: "06",
     title: "Porcelain Veneers",
-    desc: "Ultra-thin custom porcelain shells correct chips, gaps and discolouration — a complete, natural-looking smile makeover in just two visits.",
+    desc: "Ultra-thin custom porcelain shells correct chips, gaps and discolouration. A complete, natural looking smile makeover in just two visits.",
     meta: "2 visits · Custom-shaded",
     icon: "veneer",
   },
@@ -124,7 +124,7 @@ export const DOCTORS: Doctor[] = [
   {
     name: "Dr. Javeria Sohail",
     role: "Dental Surgeon",
-    credentials: "BDS — Distinction in Oral Pathology",
+    credentials: "BDS, Distinction in Oral Pathology",
     tags: ["Restorative", "Preventive", "Oral Care"],
     bio: "BDS (2021) with Distinction in Oral Pathology. Compassionate care in preventive and restorative dentistry, extractions, scaling, dental emergencies and long-term oral health.",
     img: "https://dentalartscare.vercel.app/images/doc3.jpeg",
@@ -183,7 +183,7 @@ export type Testimonial = {
 export const TESTIMONIALS: Testimonial[] = [
   {
     quote:
-      "I was terrified of dentists for years, but DentalArt Care completely changed that. Dr. Chishti was so patient and gentle — my braces journey was actually enjoyable, and my smile is now perfect.",
+      "I was terrified of dentists for years, but DentalArt Care completely changed that. Dr. Chishti was so patient and gentle, my braces journey was actually enjoyable, and my smile is now perfect.",
     name: "Zainab Malik",
     treatment: "Orthodontics Patient",
     initials: "ZM",
@@ -199,7 +199,7 @@ export const TESTIMONIALS: Testimonial[] = [
   },
   {
     quote:
-      "The whitening treatment was incredible — I went 7 shades lighter in one visit. Dr. Javeria is an artist, and the entire team was warm and professional. I now recommend DentalArt Care to everyone I know.",
+      "The whitening treatment was incredible, I went 7 shades lighter in one visit. Dr. Javeria is an artist, and the entire team was warm and professional. I now recommend DentalArt Care to everyone I know.",
     name: "Ayesha Khan",
     treatment: "Whitening Patient",
     initials: "AK",
@@ -207,7 +207,7 @@ export const TESTIMONIALS: Testimonial[] = [
   },
   {
     quote:
-      "I had a root canal that I was dreading for months. The DentalArt Care team made the whole experience so easy — I barely felt a thing. Modern dentistry is amazing when you're in the right hands.",
+      "I had a root canal that I was dreading for months. The DentalArt Care team made the whole experience so easy, I barely felt a thing. Modern dentistry is amazing when you're in the right hands.",
     name: "Hamza Yousuf",
     treatment: "Root Canal Patient",
     initials: "HY",
@@ -215,7 +215,7 @@ export const TESTIMONIALS: Testimonial[] = [
   },
   {
     quote:
-      "My porcelain veneers look completely natural — everyone thinks they're my real teeth! Dr. Javeria spent hours planning the perfect shape for my face. I smile in every photo now.",
+      "My porcelain veneers look completely natural, everyone thinks they're my real teeth! Dr. Javeria spent hours planning the perfect shape for my face. I smile in every photo now.",
     name: "Mariam Shah",
     treatment: "Veneers Patient",
     initials: "MS",
@@ -229,25 +229,25 @@ export const REASONS = [
   {
     num: "01",
     title: "Specialist-led, never rushed",
-    desc: "Every treatment plan is designed and delivered by board-certified specialists — and your consultation is never timed by a clock. We explain honestly, then let you decide.",
+    desc: "Every treatment plan is designed and delivered by board-certified specialists, and your consultation is never timed by a clock. We explain honestly, then let you decide.",
     icon: "badge",
   },
   {
     num: "02",
     title: "Gentle, anxiety-free dentistry",
-    desc: "Calm rooms, honest pacing and proven pain-free protocols. Patients who avoided dentists for years tell us this is where that changed — especially families balancing school and work.",
+    desc: "Calm rooms, honest pacing and proven pain-free protocols. Patients who avoided dentists for years tell us this is where that changed, especially families balancing school and work.",
     icon: "heart",
   },
   {
     num: "03",
     title: "Transparent, honest pricing",
-    desc: "A written estimate before any treatment begins, no upfront payment and no hidden charges. Free rescheduling, always — your plan should fit your life, not the other way round.",
+    desc: "A written estimate before any treatment begins, no upfront payment and no hidden charges. Free rescheduling, always, your plan should fit your life, not the other way round.",
     icon: "shield",
   },
   {
     num: "04",
     title: "Hospital-grade sterilisation",
-    desc: "Autoclave-verified instruments, single-use disposables and digital diagnostics. The same safety standards you'd expect in a hospital — applied to every cleaning, every filling.",
+    desc: "Autoclave-verified instruments, single-use disposables and digital diagnostics. The same safety standards you'd expect in a hospital, applied to every cleaning, every filling.",
     icon: "pulse",
   },
 ] as const;
@@ -257,11 +257,11 @@ export const REASONS = [
 export const FAQS = [
   {
     q: "Do I need an appointment, or can I walk in?",
-    a: "Appointments help us give you unhurried, fully-prepared care — and booking takes under a minute on WhatsApp. We keep daily slots for dental emergencies, so if you're in pain, call us and we'll see you as soon as possible.",
+    a: "Appointments help us give you unhurried, fully-prepared care, and booking takes under a minute on WhatsApp. We keep daily slots for dental emergencies, so if you're in pain, call us and we'll see you as soon as possible.",
   },
   {
     q: "Will my treatment be painful?",
-    a: "No. Pain-free dentistry is a protocol here, not a slogan — modern anaesthesia, gentle technique and honest pacing at every step. Most patients are surprised by how comfortable procedures like root canals and implants actually are.",
+    a: "No. Pain-free dentistry is a protocol here, not a slogan, modern anaesthesia, gentle technique and honest pacing at every step. Most patients are surprised by how comfortable procedures like root canals and implants actually are.",
   },
   {
     q: "How much do treatments cost?",
@@ -273,17 +273,34 @@ export const FAQS = [
   },
   {
     q: "How long does professional whitening last?",
-    a: "With normal habits, in-office whitening typically lasts 12–24 months. We'll give you a simple maintenance routine — and touch-ups for existing patients are always quick and affordable.",
+    a: "With normal habits, in-office whitening typically lasts 12–24 months. We'll give you a simple maintenance routine, and touch-ups for existing patients are always quick and affordable.",
   },
   {
     q: "What should I bring to my first visit?",
-    a: "Just yourself and any previous dental records or X-rays if you have them. Arrive a few minutes early, and we'll handle the rest — your consultation includes a full examination and an honest, written treatment plan.",
+    a: "Just yourself and any previous dental records or X-rays if you have them. Arrive a few minutes early, and we'll handle the rest, your consultation includes a full examination and an honest, written treatment plan.",
   },
 ];
 
 /* ── Booking form options ───────────────────────────────────────── */
 
+/* ── Additional treatments (no dedicated page, book directly) ─────── */
+
+export type ExtraService = { name: string; meta: string };
+
+export const ALSO_AVAILABLE: ExtraService[] = [
+  { name: "Wisdom Tooth Removal", meta: "Surgical" },
+  { name: "Children's Dentistry", meta: "From age 3" },
+  { name: "Dental Emergencies", meta: "Same day" },
+  { name: "Crowns & Bridges", meta: "2 visits" },
+  { name: "Tooth Extraction", meta: "Under local" },
+  { name: "Dentures", meta: "Full or partial" },
+  { name: "Bone Grafting", meta: "Pre-implant" },
+  { name: "Gum Disease Treatment", meta: "Deep cleaning" },
+  { name: "TMJ & Jaw Pain", meta: "Assessment" },
+];
+
 export const SERVICE_OPTIONS = [
   ...SERVICES.map((s) => s.title),
+  ...ALSO_AVAILABLE.map((s) => s.name),
   "General Consultation",
 ];
