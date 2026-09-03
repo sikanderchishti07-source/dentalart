@@ -1,7 +1,7 @@
 import type { ComponentType } from "react";
 import { Link } from "react-router-dom";
 import { SERVICE_PAGES } from "../serviceContent";
-import { SERVICES, STATS, REASONS, CLINIC, type Service } from "../data";
+import { SERVICES, STATS, REASONS, CLINIC, ALSO_AVAILABLE, type Service } from "../data";
 import { Reveal, CountUp, Eyebrow } from "../ui";
 import {
   SparkleIcon,
@@ -212,21 +212,55 @@ export function WhyUs() {
 /* ═══════════════════ SERVICES (editorial index) ═══════════════════ */
 
 export function Services() {
-  const slugFor = (icon: Service["icon"]) =>
-    SERVICE_PAGES.find((p) => p.icon === icon)?.slug;
+  const pageFor = (icon: Service["icon"]) =>
+    SERVICE_PAGES.find((p) => p.icon === icon);
+
+  /* Short "who does it / how long" line under each title */
+  const SUBLABEL: Record<Service["icon"], string> = {
+    implant: "Oral surgeon · 3 to 6 months",
+    braces: "FCPS orthodontist · 1 to 2 years",
+    veneer: "Custom shaded · 2 visits",
+    whiten: "Up to 8 shades · one visit",
+    rootcanal: "Saves the tooth · 1 to 2 visits",
+    clean: "Full check-up · every 6 months",
+  };
+
+  const IMG: Record<Service["icon"], string> = {
+    implant: "/images/svc-implant.jpg",
+    braces: "/images/svc-braces.jpg",
+    veneer: "/images/svc-veneer.jpg",
+    whiten: "/images/svc-whiten.jpg",
+    rootcanal: "/images/svc-root.jpg",
+    clean: "/images/svc-clean.jpg",
+  };
+
+  const featured = SERVICES.find((s) => s.icon === "implant");
+  const rest = SERVICES.filter((s) => s.icon !== "implant");
 
   const book = (service: string) => {
     window.dispatchEvent(new CustomEvent("dac:service", { detail: service }));
     document.getElementById("booking")?.scrollIntoView({ behavior: "smooth" });
   };
 
+  const Arrow = () => (
+    <ArrowRightIcon className="w-3 h-3 transition-transform duration-300 group-hover:translate-x-0.5" />
+  );
+
   return (
-    <section id="services" aria-labelledby="services-heading" className="relative py-24 sm:py-32 bg-white border-y border-foam">
+    <section
+      id="services"
+      aria-labelledby="services-heading"
+      className="relative py-24 sm:py-28 bg-paper border-y border-foam"
+    >
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
-        <div className="grid lg:grid-cols-12 gap-8 items-end mb-14">
+        {/* ── Heading ── */}
+        <div className="grid lg:grid-cols-12 gap-6 lg:gap-8 items-end mb-10">
           <Reveal className="lg:col-span-7">
             <Eyebrow>What we offer</Eyebrow>
-            <h2 id="services-heading" className="font-display font-semibold text-ink text-[34px] sm:text-[46px] leading-[1.06] tracking-tight mt-5">
+            <h2
+              id="services-heading"
+              className="font-display font-semibold text-ink text-[32px] sm:text-[42px] leading-[1.08] tracking-tight mt-5"
+            >
               Complete care,
               <br />
               <em className="italic font-medium text-primary">under one roof.</em>
@@ -234,73 +268,131 @@ export function Services() {
           </Reveal>
           <Reveal delay={140} className="lg:col-span-5">
             <p className="text-[15px] leading-relaxed text-slate-brand font-medium lg:pb-2">
-              Six core treatments, one standard: specialist hands, honest
-              planning and results you'll photograph. Choose a treatment to
-              start your booking.
+              Six core treatments, each planned and delivered by a dentist with a
+              postgraduate specialty in that field. Choose one to read what it
+              involves, what it costs and how long it takes.
             </p>
           </Reveal>
         </div>
 
-        <div className="border-t border-foam" role="list" aria-label="Dental treatments">
-          {SERVICES.map((s, i) => {
-            const Icon = ICONS[s.icon];
-            return (
-              <Reveal key={s.id} delay={i * 60}>
-                <article
-                  role="listitem"
-                  className="svc-row group grid sm:grid-cols-12 gap-x-6 gap-y-3 items-center border-b border-foam py-6 sm:py-7 px-3 sm:px-5 transition-colors duration-300"
-                >
-                  <span className="sm:col-span-1 font-display italic font-medium text-[22px] text-mist group-hover:text-primary transition-colors duration-300">
-                    {s.num}
+        <div className="grid md:grid-cols-2 gap-4.5 gap-y-4">
+          {/* ── Featured: implants ── */}
+          {featured && (
+            <Reveal className="md:col-span-2">
+              <Link
+                to={`/${pageFor(featured.icon)?.slug ?? ""}`}
+                className="group grid md:grid-cols-[1.5fr_1fr] rounded-3xl bg-deep border border-deep overflow-hidden transition-all duration-400 hover:-translate-y-1 hover:shadow-[0_24px_48px_-24px_rgba(4,29,48,0.5)]"
+              >
+                <div className="p-8 md:pr-8 md:pl-7 flex flex-col justify-center order-2 md:order-1">
+                  <span className="inline-flex items-center gap-1.5 text-[10.5px] font-extrabold uppercase tracking-[0.12em] text-sky-brand mb-3">
+                    <span className="w-1.5 h-1.5 rounded-full bg-sky-brand" aria-hidden="true" />
+                    Most requested
                   </span>
-                  <div className="sm:col-span-4 flex items-center gap-4">
-                    <span className="shrink-0 w-12 h-12 rounded-xl bg-foam text-primary grid place-items-center transition-all duration-300 group-hover:bg-primary group-hover:text-white group-hover:-rotate-6 group-hover:scale-105">
-                      <Icon className="w-6 h-6" />
-                    </span>
-                    <h3 className="font-display font-semibold text-[21px] sm:text-[22px] text-ink tracking-tight leading-tight">
-                      {s.title}
-                    </h3>
-                  </div>
-                  <p className="sm:col-span-4 text-[13.5px] leading-relaxed text-slate-brand font-medium">
+                  <h3 className="font-display font-semibold text-[23px] tracking-tight text-white">
+                    {featured.title}
+                  </h3>
+                  <p className="mt-1.5 text-[11px] font-extrabold uppercase tracking-[0.04em] text-sky-brand/75 whitespace-nowrap">
+                    {SUBLABEL[featured.icon]}
+                  </p>
+                  <p className="mt-3 max-w-[52ch] text-[13.5px] leading-relaxed text-paper/60 font-medium">
+                    {featured.desc}
+                  </p>
+                  <span className="mt-6 inline-flex items-center gap-1.5 self-start rounded-full border-[1.5px] border-paper/28 px-4 py-2 text-[12.5px] font-extrabold text-white transition-all duration-300 group-hover:bg-paper group-hover:text-ink group-hover:border-paper">
+                    Learn more <Arrow />
+                  </span>
+                </div>
+                <div className="relative min-h-[170px] overflow-hidden bg-foam order-1 md:order-2">
+                  <img
+                    src={IMG[featured.icon]}
+                    alt=""
+                    loading="lazy"
+                    className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.06]"
+                  />
+                  <span
+                    className="absolute inset-0 bg-gradient-to-t from-deep via-deep/40 to-transparent md:bg-gradient-to-r md:from-deep md:via-deep/40 md:to-transparent"
+                    aria-hidden="true"
+                  />
+                </div>
+              </Link>
+            </Reveal>
+          )}
+
+          {/* ── The other five ── */}
+          {rest.map((s, i) => (
+            <Reveal key={s.id} delay={i * 70}>
+              <Link
+                to={`/${pageFor(s.icon)?.slug ?? ""}`}
+                className="group grid sm:grid-cols-[1.15fr_.85fr] h-full rounded-3xl border border-foam bg-white overflow-hidden transition-all duration-400 hover:-translate-y-1 hover:border-primary/35 hover:shadow-[0_24px_48px_-24px_rgba(4,29,48,0.3)]"
+              >
+                <div className="p-7 flex flex-col order-2 sm:order-1">
+                  <h3 className="font-display font-semibold text-[21px] tracking-tight text-ink">
+                    {s.title}
+                  </h3>
+                  <p className="mt-1.5 text-[11px] font-extrabold uppercase tracking-[0.04em] text-mist whitespace-nowrap">
+                    {SUBLABEL[s.icon]}
+                  </p>
+                  <p className="mt-3 flex-1 text-[13.5px] leading-relaxed text-slate-brand font-medium">
                     {s.desc}
                   </p>
-                  <div className="sm:col-span-3 flex sm:justify-end items-center gap-4">
-                    <span className="hidden md:inline-block rounded-full bg-foam px-3 py-1 text-[10.5px] font-extrabold uppercase tracking-[0.12em] text-primary-deep">
-                      {s.meta}
-                    </span>
-                    {slugFor(s.icon) ? (
-                      <Link
-                        to={`/${slugFor(s.icon)}`}
-                        aria-label={`Read about ${s.title}`}
-                        className="inline-flex items-center gap-2 rounded-full border-[1.5px] border-ink/15 px-4 py-2 text-[12.5px] font-extrabold text-ink transition-all duration-300 hover:border-ink hover:bg-ink hover:text-paper group-hover:border-primary/40"
-                      >
-                        Learn more
-                        <ArrowRightIcon className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />
-                      </Link>
-                    ) : (
-                      <button
-                        onClick={() => book(s.id)}
-                        aria-label={`Book ${s.title}`}
-                        className="inline-flex items-center gap-2 rounded-full border-[1.5px] border-ink/15 px-4 py-2 text-[12.5px] font-extrabold text-ink transition-all duration-300 hover:border-ink hover:bg-ink hover:text-paper group-hover:border-primary/40"
-                      >
-                        Book
-                        <ArrowRightIcon className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />
-                      </button>
-                    )}
-                  </div>
-                </article>
-              </Reveal>
-            );
-          })}
+                  <span className="mt-6 inline-flex items-center gap-1.5 self-start rounded-full border-[1.5px] border-ink/14 px-4 py-2 text-[12.5px] font-extrabold text-ink transition-all duration-300 group-hover:bg-ink group-hover:text-paper group-hover:border-ink">
+                    Learn more <Arrow />
+                  </span>
+                </div>
+                <div className="relative min-h-[150px] overflow-hidden bg-foam order-1 sm:order-2">
+                  <img
+                    src={IMG[s.icon]}
+                    alt=""
+                    loading="lazy"
+                    className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.06]"
+                  />
+                  <span
+                    className="absolute inset-0 bg-gradient-to-t from-white via-white/35 to-transparent sm:bg-gradient-to-r sm:from-white sm:via-white/35 sm:to-transparent"
+                    aria-hidden="true"
+                  />
+                </div>
+              </Link>
+            </Reveal>
+          ))}
         </div>
 
-        <Reveal className="mt-9 flex flex-wrap items-center gap-3 text-[13.5px] font-semibold text-slate-brand">
+        {/* ── Also available ── */}
+        <Reveal className="mt-10 pt-8 border-t border-foam">
+          <h3 className="font-body text-[11px] font-extrabold uppercase tracking-[0.22em] text-mist mb-5">
+            Also available
+          </h3>
+          <ul className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8">
+            {ALSO_AVAILABLE.map((item) => (
+              <li key={item.name}>
+                <button
+                  onClick={() => book(item.name)}
+                  className="group w-full flex items-baseline gap-3 py-2.5 border-b border-foam text-left transition-all duration-250 hover:pl-1.5"
+                >
+                  <span
+                    className="w-[5px] h-[5px] rounded-full bg-sky-brand shrink-0 -translate-y-0.5 transition-transform duration-250 group-hover:scale-150 group-hover:bg-primary"
+                    aria-hidden="true"
+                  />
+                  <span className="text-[14.5px] font-bold text-ink whitespace-nowrap">
+                    {item.name}
+                  </span>
+                  <span className="ml-auto text-[12px] font-semibold text-mist whitespace-nowrap">
+                    {item.meta}
+                  </span>
+                </button>
+              </li>
+            ))}
+          </ul>
+        </Reveal>
+
+        <Reveal className="mt-8 flex flex-wrap items-center gap-2 text-[13.5px] font-semibold text-slate-brand">
           <SparkleIcon className="w-4 h-4 text-mint" />
           Not sure what you need? Start with a{" "}
-          <button onClick={() => book("General Consultation")} className="link-line font-extrabold text-primary">
+          <button
+            onClick={() => book("General Consultation")}
+            className="link-line font-extrabold text-primary"
+          >
             general consultation
           </button>{" "}
-          — we'll map it out together.
+          and we will map it out together.
         </Reveal>
       </div>
     </section>

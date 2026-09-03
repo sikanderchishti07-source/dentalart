@@ -41,17 +41,33 @@ function BeforeAfter({ item, delay }: { item: GalleryCase; delay: number }) {
         {/* Compare surface */}
         <div
           ref={wrapRef}
-          className="relative aspect-[10/7] select-none touch-none cursor-ew-resize overflow-hidden"
+          className="relative aspect-[4/3] select-none touch-none cursor-ew-resize overflow-hidden bg-foam"
           onPointerDown={onPointerDown}
           onPointerMove={onPointerMove}
           onPointerUp={stop}
           onPointerLeave={stop}
         >
-          {/* After (base) */}
-          <img src={item.img} alt={`${item.title} — after treatment result`} className="absolute inset-0 w-full h-full object-cover" loading="lazy" draggable={false} />
-          {/* Before (clipped, tinted) */}
-          <div className="absolute inset-0" style={{ clipPath: `inset(0 ${100 - pos}% 0 0)` }} aria-hidden="true">
-            <img src={item.img} alt="" className="absolute inset-0 w-full h-full object-cover ba-img-before" loading="lazy" draggable={false} />
+          {/* After (base layer) */}
+          <img
+            src={item.imgAfter}
+            alt={`${item.title}, result after treatment`}
+            className="absolute inset-0 w-full h-full object-cover"
+            loading="lazy"
+            draggable={false}
+          />
+          {/* Before (separate photograph, revealed by the handle) */}
+          <div
+            className="absolute inset-0"
+            style={{ clipPath: `inset(0 ${100 - pos}% 0 0)` }}
+            aria-hidden="true"
+          >
+            <img
+              src={item.imgBefore}
+              alt=""
+              className="absolute inset-0 w-full h-full object-cover"
+              loading="lazy"
+              draggable={false}
+            />
           </div>
 
           {/* Labels */}
@@ -63,7 +79,7 @@ function BeforeAfter({ item, delay }: { item: GalleryCase; delay: number }) {
             <div className="absolute inset-y-0 -ml-px w-0.5 bg-white/90 shadow-[0_0_12px_rgba(4,29,48,0.35)]" />
             <button
               role="slider"
-              aria-label={`Compare before and after — ${item.title}`}
+              aria-label={`Compare before and after: ${item.title}`}
               aria-valuemin={0}
               aria-valuemax={100}
               aria-valuenow={Math.round(pos)}
@@ -110,9 +126,9 @@ export function Gallery() {
           </Reveal>
           <Reveal delay={140} className="lg:col-span-5">
             <p className="text-[15px] leading-relaxed text-slate-brand font-medium lg:pb-2">
-              Drag the handle on any case to compare before and after. Every
-              result below was achieved in our clinic — no filters, no stock
-              promises.
+              Drag the handle on any case to compare before and after. Each pair
+              is the same patient, photographed in the same position and
+              lighting, and shared with their permission.
             </p>
           </Reveal>
         </div>
@@ -157,7 +173,7 @@ function DoctorCard({ doc, delay }: { doc: (typeof DOCTORS)[number]; delay: numb
       >
         <img
           src={doc.img}
-          alt={`${doc.name} — ${doc.role} at DentalArt Care`}
+          alt={`${doc.name}, ${doc.role} at DentalArt Care`}
           className="w-full aspect-[3/3.6] object-cover object-top transition-transform duration-700 group-hover:scale-[1.04]"
           loading="lazy"
         />
@@ -211,7 +227,7 @@ export function Team() {
           </Reveal>
           <Reveal delay={140} className="lg:col-span-5">
             <p className="text-[15px] leading-relaxed text-slate-brand font-medium lg:pb-2">
-              Board-certified specialists with decades of combined experience —
+              Board-certified specialists with decades of combined experience,
               and the patience to explain everything before they touch a thing.
             </p>
           </Reveal>
@@ -267,7 +283,7 @@ export function Testimonials() {
                   ))}
                 </div>
                 <p className="mt-4 text-[13.5px] font-semibold text-paper/70 leading-relaxed">
-                  Based on 2,140+ verified patient reviews. Read a few of them —
+                  From our patients. Read a few of them,
                   in their own words.
                 </p>
               </div>

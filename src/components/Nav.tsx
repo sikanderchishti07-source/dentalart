@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import { CLINIC } from "../data";
 import {
   ToothIcon,
@@ -23,6 +24,10 @@ const LINKS: { label: string; href: string; urgent?: boolean }[] = [
 ];
 
 export default function Nav() {
+  const { pathname } = useLocation();
+  /* Service pages open on a dark hero, so the nav needs its solid
+     treatment from the top rather than only after scrolling. */
+  const onDarkHero = pathname !== "/";
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState<string>("");
@@ -73,7 +78,7 @@ export default function Nav() {
       {/* ── Utility bar ── */}
       <div
         className={`hidden overflow-hidden bg-deep text-paper/85 transition-all duration-500 md:block ${
-          scrolled ? "max-h-0" : "max-h-12"
+          scrolled && !onDarkHero ? "max-h-0" : "max-h-12"
         }`}
       >
         <div className="mx-auto flex h-9 max-w-7xl items-center justify-between px-6 text-[12.5px] font-semibold tracking-wide lg:px-10">
@@ -102,7 +107,7 @@ export default function Nav() {
       <nav
         aria-label="Main navigation"
         className={`border-b transition-all duration-500 ${
-          scrolled
+          scrolled || onDarkHero
             ? "border-foam bg-paper/90 shadow-[0_8px_30px_-18px_rgba(4,29,48,0.25)] backdrop-blur-xl"
             : "border-transparent bg-gradient-to-b from-paper/80 to-transparent backdrop-blur-[2px]"
         }`}
@@ -153,7 +158,7 @@ export default function Nav() {
               visible there), revealed once the user scrolls past it */}
           <div
             className={`flex shrink-0 items-center gap-2.5 transition-all duration-400 ${
-              scrolled
+              scrolled || onDarkHero
                 ? "translate-y-0 opacity-100"
                 : "pointer-events-none -translate-y-1 opacity-0 lg:invisible"
             }`}
@@ -162,7 +167,7 @@ export default function Nav() {
               href={CLINIC.whatsappHref}
               target="_blank"
               rel="noopener noreferrer"
-              tabIndex={scrolled ? 0 : -1}
+              tabIndex={scrolled || onDarkHero ? 0 : -1}
               className="hidden items-center gap-2 whitespace-nowrap rounded-full bg-wa/[0.12] px-[18px] py-2.5 text-[13px] font-bold text-moss transition-colors duration-300 hover:bg-wa/20 md:inline-flex"
             >
               <WhatsAppIcon className="h-[17px] w-[17px] shrink-0" />
@@ -170,7 +175,7 @@ export default function Nav() {
             </a>
             <a
               href="#booking"
-              tabIndex={scrolled ? 0 : -1}
+              tabIndex={scrolled || onDarkHero ? 0 : -1}
               className="group hidden items-center gap-2 rounded-full bg-ink py-2.5 pl-5 pr-2.5 text-[13px] font-bold text-paper transition-all duration-300 hover:-translate-y-0.5 hover:bg-primary hover:shadow-[0_10px_24px_-10px_rgba(2,136,209,0.7)] sm:inline-flex"
             >
               Book Appointment
