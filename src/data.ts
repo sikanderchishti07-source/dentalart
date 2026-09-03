@@ -12,10 +12,15 @@ export const CLINIC = {
     encodeURIComponent(
       "Hi! I'd like to inquire about booking an appointment with DentalArt Care."
     ),
+  phone2Display: "+92 329 1271907",
+  phone2Href: "tel:+923291271907",
+  email: "dentalartcare.pk@gmail.com",
+  address: "48-C, Block Al-Kabir Town Phase 2, Raiwind Road, Lahore",
+  city: "Lahore",
   hours: [
-    { days: "Monday – Friday", time: "10:00 AM – 8:00 PM" },
-    { days: "Saturday", time: "10:00 AM – 6:00 PM" },
-    { days: "Sunday", time: "Emergency on call" },
+    { days: "Mon – Sat", time: "3:00 PM – 10:00 PM" },
+    { days: "Sunday", time: "Closed" },
+    { days: "Emergencies", time: "24/7 on call" },
   ],
   tagline: "Specialist-led dentistry, delivered gently.",
 };
@@ -129,10 +134,10 @@ export const DOCTORS: Doctor[] = [
 /* ── Stats ──────────────────────────────────────────────────────── */
 
 export const STATS = [
-  { value: 10000, suffix: "+", decimals: 0, label: "Happy Patients", sub: "and counting" },
-  { value: 15, suffix: " yrs", decimals: 0, label: "Years of Experience", sub: "clinical excellence" },
-  { value: 50, suffix: "+", decimals: 0, label: "Expert Doctors", sub: "specialist network" },
-  { value: 4.9, suffix: "★", decimals: 1, label: "Average Rating", sub: "verified reviews" },
+  { value: 10000, suffix: "+", decimals: 0, label: "Patients treated", sub: "across Lahore" },
+  { value: 10, suffix: "+", decimals: 0, label: "Years of practice", sub: "specialist experience" },
+  { value: 5, suffix: "", decimals: 0, label: "Specialist doctors", sub: "MDS & FCPS qualified" },
+  { value: 4.9, suffix: "★", decimals: 1, label: "Average rating", sub: "from patient reviews" },
 ];
 
 /* ── Smile transformations (before/after gallery) ───────────────── */
