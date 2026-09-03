@@ -309,7 +309,7 @@ export function Services() {
                     className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.06]"
                   />
                   <span
-                    className="absolute inset-0 bg-gradient-to-t from-deep via-deep/40 to-transparent md:bg-gradient-to-r md:from-deep md:via-deep/40 md:to-transparent"
+                    className="absolute inset-0 bg-gradient-to-t from-deep via-deep/30 to-transparent md:bg-gradient-to-r md:from-deep md:via-deep/25 md:to-transparent"
                     aria-hidden="true"
                   />
                 </div>
@@ -346,7 +346,7 @@ export function Services() {
                     className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.06]"
                   />
                   <span
-                    className="absolute inset-0 bg-gradient-to-t from-white via-white/35 to-transparent sm:bg-gradient-to-r sm:from-white sm:via-white/35 sm:to-transparent"
+                    className="absolute inset-0 bg-gradient-to-t from-white via-white/20 to-transparent sm:bg-gradient-to-r sm:from-white sm:via-transparent sm:to-transparent"
                     aria-hidden="true"
                   />
                 </div>
