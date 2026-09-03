@@ -9,6 +9,10 @@
   --color-moss: #388e3c;
   --color-wa: #25d366;
 
+  /* ── Alert (emergency path only — not part of the brand palette) ─ */
+  --color-alert: #e5484d;
+  --color-alert-deep: #c62f34;
+
   /* ── Neutrals (cool, clinical, premium) ──────────────────────── */
   --color-ink: #06283f;
   --color-deep: #041d30;
