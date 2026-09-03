@@ -41,7 +41,7 @@ function BeforeAfter({ item, delay }: { item: GalleryCase; delay: number }) {
         {/* Compare surface */}
         <div
           ref={wrapRef}
-          className="relative aspect-[4/3] select-none touch-none cursor-ew-resize overflow-hidden bg-foam"
+          className="relative aspect-[16/9] select-none touch-none cursor-ew-resize overflow-hidden bg-foam"
           onPointerDown={onPointerDown}
           onPointerMove={onPointerMove}
           onPointerUp={stop}
