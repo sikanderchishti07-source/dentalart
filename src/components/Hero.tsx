@@ -1,221 +1,201 @@
-import { useEffect, useState } from "react";
-import { IMAGES } from "../data";
-import { SparkleIcon, StarIcon, CalendarIcon, HeartPulseIcon, ArrowRightIcon } from "../icons";
+import { IMAGES, CLINIC } from "../data";
+import {
+  StarIcon,
+  ArrowRightIcon,
+  ShieldIcon,
+  HeartPulseIcon,
+  SparkleIcon,
+  WhatsAppIcon,
+} from "../icons";
 
-const AVATARS = [
-  { initials: "JM", bg: "from-primary to-sky-brand" },
-  { initials: "SR", bg: "from-sky-brand to-mint" },
-  { initials: "AP", bg: "from-mint to-moss" },
-  { initials: "KL", bg: "from-primary-deep to-primary" },
+/* Trust pillars — qualitative reassurance, shown before the numbers */
+const PILLARS = [
+  {
+    Icon: ShieldIcon,
+    title: "Specialist-led",
+    desc: "MDS & FCPS qualified",
+  },
+  {
+    Icon: HeartPulseIcon,
+    title: "Pain-free protocol",
+    desc: "Comfort-first technique",
+  },
+  {
+    Icon: SparkleIcon,
+    title: "Hospital-grade",
+    desc: "Sterilisation standards",
+  },
+];
+
+const PROOF = [
+  { value: "10,000+", label: "Patients treated", sub: "across Lahore" },
+  { value: "10+", label: "Years of practice", sub: "specialist experience" },
+  { value: "4.9", label: "Average rating", sub: "from patient reviews" },
 ];
 
 export default function Hero() {
-  const [masksIn, setMasksIn] = useState(false);
-  useEffect(() => {
-    const t = setTimeout(() => setMasksIn(true), 120);
-    return () => clearTimeout(t);
-  }, []);
-
   return (
-    <section id="top" aria-label="Introduction" className="relative overflow-hidden pt-[104px] md:pt-[132px]">
-      {/* Ambient background layers */}
-      <div className="absolute inset-0 -z-10" aria-hidden="true">
-        <div className="absolute inset-0 bg-[radial-gradient(58rem_36rem_at_88%_-8%,rgba(79,195,247,0.16),transparent_62%),radial-gradient(48rem_32rem_at_-12%_68%,rgba(129,199,132,0.13),transparent_60%)]" />
-        <div className="absolute inset-0 opacity-[0.35] bg-[linear-gradient(rgba(2,136,209,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(2,136,209,0.05)_1px,transparent_1px)] bg-[size:56px_56px] [mask-image:radial-gradient(60rem_40rem_at_50%_0%,black,transparent_75%)]" />
-      </div>
+    <section
+      id="top"
+      aria-label="Introduction"
+      className="relative overflow-hidden bg-paper"
+    >
+      {/* ── Split canvas: copy left, clinic photo bleeding right ── */}
+      <div className="relative lg:min-h-[640px]">
+        {/* Photo panel — diagonal edge on desktop, full-width band on mobile */}
+        <div
+          className="relative mt-[70px] h-[280px] sm:h-[360px] lg:mt-0 lg:absolute lg:inset-y-0 lg:right-0 lg:h-auto lg:w-[52%]"
+          aria-hidden="true"
+        >
+          <div className="absolute inset-0 lg:[clip-path:polygon(14%_0,100%_0,100%_100%,0_100%)]">
+            <img
+              src={IMAGES.interior}
+              alt=""
+              className="h-full w-full object-cover animate-breathe"
+              loading="eager"
+              fetchPriority="high"
+            />
+            {/* Wash so the photo never fights the headline */}
+            <div className="absolute inset-0 bg-gradient-to-r from-paper via-paper/10 to-transparent lg:from-paper/80 lg:via-transparent" />
+          </div>
+        </div>
 
-      <div className={`max-w-7xl mx-auto px-6 lg:px-10 grid lg:grid-cols-12 gap-14 lg:gap-8 items-center pb-20 lg:pb-24 ${masksIn ? "masks-in" : ""}`}>
-        {/* ── Copy column ── */}
-        <div className="lg:col-span-6 relative z-10">
-          <div className="mask-line">
-            <span>
-              <span className="inline-flex items-center gap-2.5 rounded-full border border-mint/40 bg-mint/10 px-4 py-1.5 mb-7">
-                <span className="relative w-2 h-2 rounded-full bg-moss pulse-ring text-moss" />
-                <span className="text-[11px] font-extrabold uppercase tracking-[0.22em] text-moss">
-                  Accepting new patients
-                </span>
-                <SparkleIcon className="w-3 h-3 text-mint" />
+        {/* Soft ambient tint behind the copy */}
+        <div
+          className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(46rem_32rem_at_-10%_10%,rgb(2_136_209/0.10),transparent_60%),radial-gradient(38rem_28rem_at_20%_95%,rgb(129_199_132/0.10),transparent_60%)]"
+          aria-hidden="true"
+        />
+
+        {/* Copy column */}
+        <div className="relative mx-auto max-w-7xl px-6 lg:px-10">
+          <div className="max-w-[36rem] pb-14 pt-10 lg:pb-24 lg:pt-36">
+            <span className="mb-7 inline-flex items-center gap-2.5 rounded-full border border-mint/40 bg-mint/10 px-4 py-1.5">
+              <span className="pulse-ring relative h-2 w-2 rounded-full bg-moss text-moss" />
+              <span className="text-[11px] font-extrabold tracking-[0.2em] text-moss">
+                ACCEPTING NEW PATIENTS
               </span>
             </span>
-          </div>
 
-          <h1 className="font-display font-semibold text-ink leading-[1.04] tracking-[-0.02em] text-[42px] sm:text-[56px] xl:text-[68px]">
-            <span className="mask-line"><span style={{ transitionDelay: "120ms" }}>Your perfect</span></span>
-            <span className="mask-line"><span style={{ transitionDelay: "240ms" }}>smile, designed</span></span>
-            <span className="mask-line">
-              <span style={{ transitionDelay: "360ms" }} className="flex items-baseline gap-3">
-                like{" "}
-                <em className="italic font-medium text-primary relative">
-                  art.
-                  <svg viewBox="0 0 120 12" className="absolute -bottom-1.5 left-0 w-full h-[10px] text-mint" fill="none" aria-hidden="true">
-                    <path d="M3 9C30 3 70 2 117 6" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round" />
-                  </svg>
-                </em>
-              </span>
-            </span>
-          </h1>
+            <h1 className="font-display text-[40px] font-semibold leading-[1.05] tracking-[-0.02em] text-ink sm:text-[54px] xl:text-[62px]">
+              Specialist dentistry
+              <br />
+              in Lahore,{" "}
+              <em className="relative font-medium italic text-primary">
+                designed
+                <svg
+                  viewBox="0 0 160 12"
+                  className="absolute -bottom-1 left-0 h-[9px] w-full text-mint"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M3 9C40 3 100 2 157 6"
+                    stroke="currentColor"
+                    strokeWidth="3.5"
+                    strokeLinecap="round"
+                  />
+                </svg>
+              </em>{" "}
+              around you.
+            </h1>
 
-          <div className="mask-line mt-7">
-            <span style={{ transitionDelay: "480ms" }}>
-              <p className="max-w-[52ch] text-[15.5px] sm:text-[16.5px] leading-relaxed text-slate-brand font-medium">
-                Clinical excellence doesn't have to feel cold. Our board-certified
-                specialists keep the environment calm, the explanations honest and
-                the pacing respectful — from routine cleanings to complete smile
-                makeovers.
-              </p>
-            </span>
-          </div>
+            <p className="mt-7 max-w-[46ch] text-[16px] font-medium leading-relaxed text-slate-brand">
+              Implants placed by an oral surgeon, braces planned by an FCPS
+              orthodontist, and everyday care from a team that explains before it
+              treats. Evening hours, six days a week.
+            </p>
 
-          <div className="mask-line mt-9">
-            <span style={{ transitionDelay: "600ms" }} className="flex flex-wrap items-center gap-4">
+            {/* Actions */}
+            <div className="mt-9 flex flex-wrap items-center gap-3">
               <a
                 href="#booking"
-                className="group inline-flex items-center gap-3 rounded-full bg-primary text-white pl-6 pr-2.5 py-2.5 text-[14.5px] font-bold shadow-[0_16px_36px_-14px_rgba(2,136,209,0.75)] hover:bg-primary-deep hover:-translate-y-0.5 transition-all duration-300"
+                className="group inline-flex items-center gap-3 rounded-full bg-primary py-2.5 pl-6 pr-2.5 text-[14.5px] font-bold text-white shadow-[0_16px_36px_-14px_rgb(2_136_209/0.75)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-primary-deep"
               >
-                Book Appointment
-                <span className="w-9 h-9 rounded-full bg-white/15 grid place-items-center transition-transform duration-300 group-hover:translate-x-0.5 group-hover:bg-white/25">
-                  <ArrowRightIcon className="w-4 h-4" />
+                Book appointment
+                <span className="grid h-9 w-9 place-items-center rounded-full bg-white/15 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:bg-white/25">
+                  <ArrowRightIcon className="h-4 w-4" />
                 </span>
               </a>
               <a
-                href="#services"
-                className="link-line text-[14.5px] font-bold text-ink py-2"
+                href={CLINIC.whatsappHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2.5 rounded-full border-2 border-wa/30 bg-white px-6 py-3 text-[14.5px] font-bold text-ink transition-colors duration-300 hover:border-wa hover:bg-wa/5"
               >
-                Explore treatments
+                <WhatsAppIcon className="h-[18px] w-[18px] text-wa" />
+                Chat on WhatsApp
               </a>
-            </span>
-          </div>
+            </div>
 
-          {/* Trust row */}
-          <div className="mask-line mt-12">
-            <span style={{ transitionDelay: "720ms" }} className="flex flex-wrap items-center gap-x-8 gap-y-5">
-              <div className="flex items-center gap-3.5">
-                <div className="flex -space-x-2.5">
-                  {AVATARS.map((a) => (
-                    <span
-                      key={a.initials}
-                      className={`w-9 h-9 rounded-full bg-gradient-to-br ${a.bg} ring-2 ring-paper grid place-items-center text-[10.5px] font-extrabold text-white`}
-                    >
-                      {a.initials}
+            {/* Trust pillars */}
+            <ul className="mt-11 grid gap-x-6 gap-y-5 sm:grid-cols-3">
+              {PILLARS.map(({ Icon, title, desc }) => (
+                <li key={title} className="flex items-start gap-3">
+                  <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-primary/10 text-primary">
+                    <Icon className="h-[18px] w-[18px]" />
+                  </span>
+                  <span className="leading-tight">
+                    <span className="block text-[13px] font-extrabold text-ink">
+                      {title}
                     </span>
-                  ))}
-                </div>
-                <div className="leading-tight">
-                  <p className="text-[13.5px] font-extrabold text-ink">10,000+ happy patients</p>
-                  <p className="text-[12px] font-semibold text-mist">Trusted by families across the city</p>
-                </div>
-              </div>
-              <div className="flex items-center gap-2.5">
-                <span className="flex text-primary">
-                  {[...Array(5)].map((_, i) => (
-                    <StarIcon key={i} className="w-4 h-4" />
-                  ))}
-                </span>
-                <p className="text-[13.5px] font-extrabold text-ink">
-                  4.9<span className="text-mist font-bold">/5</span>
-                  <span className="block text-[11.5px] font-semibold text-mist">2,140+ verified reviews</span>
-                </p>
-              </div>
-            </span>
-          </div>
-        </div>
-
-        {/* ── Visual column ── */}
-        <div className="lg:col-span-6 relative" aria-hidden="false">
-          <div className="relative max-w-[430px] mx-auto lg:mr-0 lg:ml-auto">
-            {/* Offset arch outline */}
-            <div className="absolute -inset-5 translate-x-5 translate-y-5 rounded-t-full rounded-b-[36px] border-2 border-dashed border-sky-brand/45" aria-hidden="true" />
-            {/* Dot texture */}
-            <svg className="absolute -top-10 -left-12 w-40 h-40 text-primary/25 hidden sm:block" aria-hidden="true">
-              <defs>
-                <pattern id="dots" width="14" height="14" patternUnits="userSpaceOnUse">
-                  <circle cx="2" cy="2" r="1.6" fill="currentColor" />
-                </pattern>
-              </defs>
-              <rect width="160" height="160" fill="url(#dots)" />
-            </svg>
-
-            {/* Arch image with Ken Burns breathing */}
-            <div className="relative rounded-t-full rounded-b-[36px] overflow-hidden shadow-[0_40px_80px_-30px_rgba(4,29,48,0.45)] ring-8 ring-white/70">
-              <img
-                src={IMAGES.hero}
-                alt="Dentist sharing a bright smile with a happy patient at DentalArt Care"
-                className="w-full aspect-[4/5] object-cover animate-breathe"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-deep/35 via-transparent to-transparent" />
-            </div>
-
-            {/* Rotating circular badge */}
-            <div className="absolute -left-8 bottom-16 w-28 h-28 hidden sm:block">
-              <svg viewBox="0 0 120 120" className="w-full h-full animate-spin-slow text-ink" aria-hidden="true">
-                <defs>
-                  <path id="circ" d="M60,60 m-46,0 a46,46 0 1,1 92,0 a46,46 0 1,1 -92,0" />
-                </defs>
-                <text className="fill-current text-[10.5px] font-extrabold tracking-[0.24em] uppercase" style={{ fontFamily: "Manrope, sans-serif" }}>
-                  <textPath href="#circ">Pain-free dentistry · smile with confidence ·</textPath>
-                </text>
-              </svg>
-              <span className="absolute inset-0 grid place-items-center">
-                <span className="w-12 h-12 rounded-full bg-white shadow-lift grid place-items-center text-primary">
-                  <ToothMark />
-                </span>
-              </span>
-            </div>
-
-            {/* Floating: rating card */}
-            <div className="absolute top-10 -right-3 sm:-right-10 animate-floaty">
-              <div className="flex items-center gap-3 rounded-2xl bg-white/95 backdrop-blur px-4 py-3 shadow-lift border border-foam">
-                <span className="w-10 h-10 rounded-xl bg-primary/10 text-primary grid place-items-center">
-                  <StarIcon className="w-5 h-5" />
-                </span>
-                <div className="leading-tight">
-                  <p className="text-[15px] font-extrabold text-ink">4.9 / 5</p>
-                  <p className="text-[11px] font-bold text-mist">Patient rating</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Floating: next opening */}
-            <div className="absolute -bottom-5 right-6 sm:-right-6 animate-floaty" style={{ animationDelay: "1.4s" }}>
-              <div className="flex items-center gap-3 rounded-2xl bg-deep text-paper px-4 py-3 shadow-lift">
-                <span className="w-10 h-10 rounded-xl bg-sky-brand/15 text-sky-brand grid place-items-center">
-                  <CalendarIcon className="w-5 h-5" />
-                </span>
-                <div className="leading-tight">
-                  <p className="text-[13px] font-extrabold">Next opening</p>
-                  <p className="text-[11.5px] font-semibold text-sky-brand">Today · 4:30 PM</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Floating: pain-free chip */}
-            <div className="absolute top-[46%] -left-4 sm:-left-12 animate-floaty" style={{ animationDelay: "0.7s" }}>
-              <div className="flex items-center gap-2.5 rounded-full bg-white/95 backdrop-blur pl-2.5 pr-4 py-2 shadow-lift border border-foam">
-                <span className="w-8 h-8 rounded-full bg-mint/20 text-moss grid place-items-center">
-                  <HeartPulseIcon className="w-4 h-4" />
-                </span>
-                <span className="text-[12px] font-extrabold text-ink whitespace-nowrap">Pain-free treatments</span>
-              </div>
-            </div>
+                    <span className="block text-[12px] font-semibold text-mist">
+                      {desc}
+                    </span>
+                  </span>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </div>
 
-      {/* Smile-curve divider */}
+      {/* ── Proof bar: real numbers, spanning the full width ── */}
+      <div className="relative mx-auto max-w-7xl px-6 pb-16 lg:px-10 lg:pb-20">
+        <div className="grid divide-y divide-foam rounded-3xl border border-foam bg-white/95 shadow-lift backdrop-blur sm:grid-cols-3 sm:divide-x sm:divide-y-0">
+          {PROOF.map((p, i) => (
+            <div key={p.label} className="flex items-center gap-4 px-7 py-6">
+              <span className="font-display text-[34px] font-semibold leading-none text-primary">
+                {p.value}
+              </span>
+              <span className="leading-tight">
+                <span className="block text-[13.5px] font-extrabold text-ink">
+                  {p.label}
+                </span>
+                <span className="block text-[12px] font-semibold text-mist">
+                  {p.sub}
+                </span>
+              </span>
+              {i === 2 && (
+                <span className="ml-auto hidden text-primary lg:flex">
+                  {[...Array(5)].map((_, s) => (
+                    <StarIcon key={s} className="h-3.5 w-3.5" />
+                  ))}
+                </span>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Smile-curve divider (kept from the original hero) */}
       <div className="relative" aria-hidden="true">
-        <svg viewBox="0 0 1440 64" className="w-full h-10 sm:h-14 block" preserveAspectRatio="none">
-          <path d="M0 8 C 360 56, 1080 56, 1440 8 L1440 64 L0 64 Z" className="fill-foam" />
-          <path d="M0 8 C 360 56, 1080 56, 1440 8" fill="none" className="stroke-sky-brand/50" strokeWidth="1.5" />
+        <svg
+          viewBox="0 0 1440 64"
+          className="block h-10 w-full sm:h-14"
+          preserveAspectRatio="none"
+        >
+          <path
+            d="M0 8 C 360 56, 1080 56, 1440 8 L1440 64 L0 64 Z"
+            className="fill-foam"
+          />
+          <path
+            d="M0 8 C 360 56, 1080 56, 1440 8"
+            fill="none"
+            className="stroke-sky-brand/50"
+            strokeWidth="1.5"
+          />
         </svg>
       </div>
     </section>
-  );
-}
-
-function ToothMark() {
-  return (
-    <svg viewBox="0 0 24 24" className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <path d="M12 3.4c-1.9-1-4.6-1.4-6.1.2C4.3 5.2 4.5 7.4 5 9.4c.5 1.8.7 3.8 1 5.7.2 1.6.5 5.6 2 5.6 1.8 0 1.6-3.3 2.2-5.5.3-1 .9-1.7 1.8-1.7s1.5.7 1.8 1.7c.6 2.2.4 5.5 2.2 5.5 1.5 0 1.8-4 2-5.6.3-1.9.5-3.9 1-5.7.5-2 .7-4.2-.9-5.8-1.5-1.6-4.2-1.2-6.1-.2Z" />
-    </svg>
   );
 }
