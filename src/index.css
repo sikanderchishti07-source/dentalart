@@ -9,7 +9,7 @@
   --color-moss: #388e3c;
   --color-wa: #25d366;
 
-  /* ── Alert (emergency path only — not part of the brand palette) ─ */
+  /* Alert: emergency path only, not part of the brand palette */
   --color-alert: #e5484d;
   --color-alert-deep: #c62f34;
 
@@ -122,11 +122,6 @@ body {
   border-radius: 9999px;
   background: currentColor;
   animation: pulse-ring 2.2s cubic-bezier(0.2, 0.6, 0.4, 1) infinite;
-}
-
-/* ── Before/After compare ─────────────────────────────────────── */
-.ba-img-before {
-  filter: saturate(0.45) contrast(0.86) brightness(0.72) sepia(0.42);
 }
 
 /* ── Accordion (grid-rows trick) ──────────────────────────────── */
