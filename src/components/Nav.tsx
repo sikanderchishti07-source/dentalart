@@ -12,13 +12,14 @@ import {
   ArrowRightIcon,
 } from "../icons";
 
-const LINKS = [
+const LINKS: { label: string; href: string; urgent?: boolean }[] = [
   { label: "Treatments", href: "#services" },
   { label: "Results", href: "#results" },
   { label: "Doctors", href: "#doctors" },
   { label: "Reviews", href: "#reviews" },
   { label: "FAQ", href: "#faq" },
   { label: "Contact", href: "#contact" },
+  { label: "Emergency", href: "#emergency", urgent: true },
 ];
 
 export default function Nav() {
@@ -135,9 +136,11 @@ export default function Nav() {
                   href={l.href}
                   aria-current={active === l.href ? "true" : undefined}
                   className={`link-line text-[13.5px] font-bold transition-colors ${
-                    active === l.href
-                      ? "text-primary"
-                      : "text-slate-brand hover:text-ink"
+                    l.urgent
+                      ? "text-alert hover:text-alert-deep"
+                      : active === l.href
+                        ? "text-primary"
+                        : "text-slate-brand hover:text-ink"
                   }`}
                 >
                   {l.label}
