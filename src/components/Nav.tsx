@@ -152,10 +152,10 @@ export default function Nav() {
               href={CLINIC.whatsappHref}
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden items-center gap-2 rounded-full border border-wa/35 bg-white/90 px-4 py-2.5 text-[13px] font-bold text-ink transition-all duration-300 hover:border-wa hover:bg-wa hover:text-white md:inline-flex"
+              className="hidden items-center gap-2 whitespace-nowrap rounded-full bg-wa/[0.12] px-[18px] py-2.5 text-[13px] font-bold text-moss transition-colors duration-300 hover:bg-wa/20 md:inline-flex"
             >
-              <WhatsAppIcon className="h-[17px] w-[17px] text-wa transition-colors group-hover:text-white" />
-              <span className="hidden xl:inline">Chat on</span> WhatsApp
+              <WhatsAppIcon className="h-[17px] w-[17px] shrink-0" />
+              WhatsApp
             </a>
             <a
               href="#booking"
