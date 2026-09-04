@@ -170,7 +170,7 @@ export function WhyUs() {
               <Reveal delay={140}>
                 <figure className="relative mt-8 rounded-3xl overflow-hidden aspect-[5/4] bg-foam shadow-card">
                   <img
-                    src={IMAGES.interior}
+                    src={IMAGES.room}
                     alt="A calm, modern treatment room at DentalArt Care"
                     className="w-full h-full object-cover"
                     loading="lazy"

@@ -27,7 +27,11 @@ export const CLINIC = {
 
 export const IMAGES = {
   hero: "https://image.qwenlm.ai/generated-images/ecf95986-ea74-487b-b222-63614d8eadfc/_result.png",
-  interior: "/images/clinic-interior.jpg",
+  /* Used by the hero's diagonal panel */
+  interior:
+    "https://image.qwenlm.ai/generated-images/7156f562-e60b-4927-a237-8e8120873dc0/_result.png",
+  /* Used only by the Why Us section */
+  room: "/images/clinic-interior.jpg",
 };
 
 /* ── Services ───────────────────────────────────────────────────── */
