@@ -199,26 +199,26 @@ export function WhyUs() {
                 const Icon = REASON_ICON_MAP[r.icon];
                 return (
                   <Reveal key={r.num} delay={i * 80}>
-                    <li className="group relative grid grid-cols-[auto_1fr] gap-5 border-b border-foam py-7 pl-1 pr-1 transition-[padding] duration-400 hover:pl-5">
+                    <li className="group relative grid grid-cols-[auto_1fr] gap-[18px] border-b border-foam py-5 pl-1 pr-1 transition-[padding] duration-400 hover:pl-4">
                       <span
                         className="pointer-events-none absolute -inset-x-6 inset-y-0 rounded-2xl bg-gradient-to-r from-primary/[0.05] to-transparent opacity-0 transition-opacity duration-400 group-hover:opacity-100"
                         aria-hidden="true"
                       />
-                      <span className="relative grid h-[46px] w-[46px] shrink-0 place-items-center rounded-2xl bg-foam text-primary transition-all duration-400 group-hover:-rotate-6 group-hover:scale-105 group-hover:bg-primary group-hover:text-white">
-                        <Icon className="w-[22px] h-[22px]" />
+                      <span className="relative grid h-10 w-10 shrink-0 place-items-center rounded-[14px] bg-foam text-primary transition-all duration-400 group-hover:-rotate-6 group-hover:scale-105 group-hover:bg-primary group-hover:text-white">
+                        <Icon className="w-5 h-5" />
                       </span>
                       <div className="relative">
-                        <div className="flex flex-wrap items-baseline gap-x-3.5 gap-y-2">
-                          <h3 className="font-display font-semibold text-[20px] sm:text-[21px] tracking-tight text-ink">
+                        <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1.5">
+                          <h3 className="font-display font-semibold text-[18px] tracking-tight text-ink">
                             {r.title}
                           </h3>
                           {PROOF[r.num] && (
-                            <span className="rounded-full bg-mint/15 px-2.5 py-1 text-[10.5px] font-extrabold uppercase tracking-[0.08em] text-moss whitespace-nowrap">
+                            <span className="rounded-full bg-mint/15 px-2.5 py-[3px] text-[10px] font-extrabold uppercase tracking-[0.08em] text-moss whitespace-nowrap">
                               {PROOF[r.num]}
                             </span>
                           )}
                         </div>
-                        <p className="mt-2.5 max-w-[58ch] text-[14px] font-medium leading-[1.7] text-slate-brand">
+                        <p className="mt-1.5 max-w-[60ch] text-[13.5px] font-medium leading-[1.6] text-slate-brand">
                           {r.desc}
                         </p>
                       </div>
