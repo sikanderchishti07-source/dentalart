@@ -1,4 +1,5 @@
 import { IMAGES, CLINIC } from "../data";
+import { usePrefersReducedMotion } from "../ui";
 import {
   StarIcon,
   ArrowRightIcon,
@@ -34,6 +35,8 @@ const PROOF = [
 ];
 
 export default function Hero() {
+  const reduceMotion = usePrefersReducedMotion();
+
   return (
     <section
       id="top"
@@ -48,13 +51,30 @@ export default function Hero() {
           aria-hidden="true"
         >
           <div className="absolute inset-0 lg:[clip-path:polygon(14%_0,100%_0,100%_100%,0_100%)]">
-            <img
-              src={IMAGES.interior}
-              alt=""
-              className="h-full w-full object-cover animate-breathe"
-              loading="eager"
-              fetchPriority="high"
-            />
+            {reduceMotion ? (
+              <img
+                src={IMAGES.heroPoster}
+                alt=""
+                className="h-full w-full object-cover"
+                loading="eager"
+                fetchPriority="high"
+              />
+            ) : (
+              <video
+                className="h-full w-full object-cover"
+                poster={IMAGES.heroPoster}
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                aria-hidden="true"
+                tabIndex={-1}
+              >
+                <source src={IMAGES.heroVideoWebm} type="video/webm" />
+                <source src={IMAGES.heroVideo} type="video/mp4" />
+              </video>
+            )}
             {/* Wash so the photo never fights the headline */}
             <div className="absolute inset-0 bg-gradient-to-r from-paper via-paper/10 to-transparent lg:from-paper/80 lg:via-transparent" />
           </div>
