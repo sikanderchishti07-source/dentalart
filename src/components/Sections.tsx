@@ -1,7 +1,7 @@
 import type { ComponentType } from "react";
 import { Link } from "react-router-dom";
 import { SERVICE_PAGES } from "../serviceContent";
-import { SERVICES, STATS, REASONS, CLINIC, ALSO_AVAILABLE, type Service } from "../data";
+import { SERVICES, STATS, REASONS, ALSO_AVAILABLE, IMAGES, type Service } from "../data";
 import { Reveal, CountUp, Eyebrow } from "../ui";
 import {
   SparkleIcon,
@@ -17,7 +17,6 @@ import {
   HeartPulseIcon,
   ShieldIcon,
   PulseIcon,
-  PhoneIcon,
   StarIcon,
 } from "../icons";
 
@@ -123,86 +122,129 @@ export function Stats() {
 /* ═══════════════════ WHY CHOOSE US (sticky two-column) ═══════════════════ */
 
 export function WhyUs() {
-  return (
-    <section id="about" aria-labelledby="about-heading" className="relative py-24 sm:py-32 overflow-hidden">
-      <div className="absolute inset-0 -z-10 bg-[radial-gradient(46rem_30rem_at_110%_20%,rgba(79,195,247,0.1),transparent_60%)]" aria-hidden="true" />
-      <div className="max-w-7xl mx-auto px-6 lg:px-10 grid lg:grid-cols-12 gap-14 lg:gap-20">
-        {/* Sticky intro */}
-        <div className="lg:col-span-5">
-          <div className="lg:sticky lg:top-32">
-            <Reveal>
-              <Eyebrow>Why DentalArt Care</Eyebrow>
-              <h2 id="about-heading" className="font-display font-semibold text-ink text-[34px] sm:text-[44px] leading-[1.08] tracking-tight mt-5">
-                Excellence that{" "}
-                <em className="italic font-medium text-primary">feels</em>{" "}
-                like care.
-              </h2>
-              <p className="mt-6 text-[15.5px] leading-relaxed text-slate-brand font-medium max-w-[50ch]">
-                We built this clinic around one idea: world-class dentistry and
-                genuine warmth belong together. That's why families drive across
-                the city to sit in our chairs — and why anxious patients finally
-                stop postponing.
-              </p>
-            </Reveal>
+  const REASON_ICON_MAP: Record<string, ComponentType<{ className?: string }>> = {
+    badge: BadgeIcon,
+    heart: HeartPulseIcon,
+    shield: ShieldIcon,
+    pulse: PulseIcon,
+  };
 
-            <Reveal delay={140} className="mt-10">
-              <div className="relative rounded-3xl overflow-hidden shadow-card">
-                <img
-                  src="https://image.qwenlm.ai/generated-images/7156f562-e60b-4927-a237-8e8120873dc0/_result.png"
-                  alt="A calm, modern DentalArt Care treatment room"
-                  className="w-full aspect-[16/10] object-cover"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-deep/70 via-deep/10 to-transparent" />
-                <div className="absolute bottom-0 inset-x-0 p-6 flex items-end justify-between gap-4">
-                  <p className="text-paper font-display italic text-[17px] leading-snug max-w-[26ch]">
-                    "A clinic should feel calm before it feels clinical."
-                  </p>
-                  <span className="shrink-0 flex items-center gap-1.5 rounded-full bg-white/15 backdrop-blur px-3 py-1.5 text-[11px] font-extrabold text-paper uppercase tracking-wider">
-                    <StarIcon className="w-3 h-3 text-sky-brand" /> Our philosophy
+  /* Short, checkable claim shown beside each heading */
+  const PROOF: Record<string, string> = {
+    "01": "MDS & FCPS qualified",
+    "02": "Sedation available",
+    "03": "Free rescheduling",
+    "04": "Every instrument, every visit",
+  };
+
+  return (
+    <section
+      id="about"
+      aria-labelledby="about-heading"
+      className="relative bg-white border-y border-foam py-16 sm:py-20"
+    >
+      <div className="max-w-7xl mx-auto px-6 lg:px-10">
+        <div className="grid lg:grid-cols-12 gap-11 lg:gap-16 items-start">
+          {/* ── Sticky intro + photo ── */}
+          <div className="lg:col-span-5">
+            <div className="lg:sticky lg:top-24">
+              <Reveal>
+                <Eyebrow>Why DentalArt Care</Eyebrow>
+                <h2
+                  id="about-heading"
+                  className="font-display font-semibold text-ink text-[32px] sm:text-[40px] leading-[1.1] tracking-tight mt-5"
+                >
+                  Excellence that{" "}
+                  <em className="italic font-medium text-primary">feels</em>
+                  <br />
+                  like care.
+                </h2>
+                <p className="mt-5 max-w-[46ch] text-[15px] leading-relaxed text-slate-brand font-medium">
+                  We built this clinic around one idea: world-class dentistry and
+                  genuine warmth belong together. That is why families drive
+                  across the city to sit in our chairs, and why anxious patients
+                  finally stop postponing.
+                </p>
+              </Reveal>
+
+              <Reveal delay={140}>
+                <figure className="relative mt-8 rounded-3xl overflow-hidden aspect-[5/4] bg-foam shadow-card">
+                  <img
+                    src={IMAGES.interior}
+                    alt="A calm, modern treatment room at DentalArt Care"
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                  <span
+                    className="absolute inset-0 bg-gradient-to-t from-deep/85 via-deep/10 to-transparent"
+                    aria-hidden="true"
+                  />
+                  <figcaption className="absolute inset-x-6 bottom-5">
+                    <p className="font-display italic text-[17px] leading-snug text-paper">
+                      "A clinic should feel calm before it feels clinical."
+                    </p>
+                    <span className="block mt-2.5 text-[10.5px] font-extrabold uppercase tracking-[0.16em] text-sky-brand">
+                      Our philosophy
+                    </span>
+                  </figcaption>
+                </figure>
+              </Reveal>
+            </div>
+          </div>
+
+          {/* ── The list ── */}
+          <div className="lg:col-span-7">
+            <ul className="border-t border-foam">
+              {REASONS.map((r, i) => {
+                const Icon = REASON_ICON_MAP[r.icon];
+                return (
+                  <Reveal key={r.num} delay={i * 80}>
+                    <li className="group relative grid grid-cols-[auto_1fr] gap-5 border-b border-foam py-7 pl-1 pr-1 transition-[padding] duration-400 hover:pl-5">
+                      <span
+                        className="pointer-events-none absolute -inset-x-6 inset-y-0 rounded-2xl bg-gradient-to-r from-primary/[0.05] to-transparent opacity-0 transition-opacity duration-400 group-hover:opacity-100"
+                        aria-hidden="true"
+                      />
+                      <span className="relative grid h-[46px] w-[46px] shrink-0 place-items-center rounded-2xl bg-foam text-primary transition-all duration-400 group-hover:-rotate-6 group-hover:scale-105 group-hover:bg-primary group-hover:text-white">
+                        <Icon className="w-[22px] h-[22px]" />
+                      </span>
+                      <div className="relative">
+                        <div className="flex flex-wrap items-baseline gap-x-3.5 gap-y-2">
+                          <h3 className="font-display font-semibold text-[20px] sm:text-[21px] tracking-tight text-ink">
+                            {r.title}
+                          </h3>
+                          {PROOF[r.num] && (
+                            <span className="rounded-full bg-mint/15 px-2.5 py-1 text-[10.5px] font-extrabold uppercase tracking-[0.08em] text-moss whitespace-nowrap">
+                              {PROOF[r.num]}
+                            </span>
+                          )}
+                        </div>
+                        <p className="mt-2.5 max-w-[58ch] text-[14px] font-medium leading-[1.7] text-slate-brand">
+                          {r.desc}
+                        </p>
+                      </div>
+                    </li>
+                  </Reveal>
+                );
+              })}
+            </ul>
+
+            <Reveal delay={360}>
+              <div className="mt-8 flex flex-wrap items-center justify-between gap-4">
+                <span className="text-[13.5px] font-semibold text-slate-brand">
+                  Specialist care, one standard throughout.
+                </span>
+                <a
+                  href="#team"
+                  className="group inline-flex items-center gap-2.5 rounded-full bg-ink py-2.5 pl-5 pr-2.5 text-[13px] font-extrabold text-paper transition-colors duration-300 hover:bg-primary"
+                >
+                  Meet the specialists
+                  <span className="grid h-[26px] w-[26px] place-items-center rounded-full bg-paper/15 transition-transform duration-300 group-hover:translate-x-0.5">
+                    <ArrowRightIcon className="w-3 h-3" />
                   </span>
-                </div>
+                </a>
               </div>
             </Reveal>
-
-            <Reveal delay={220} className="mt-8">
-              <a href={CLINIC.phoneHref} className="group inline-flex items-center gap-3 text-ink">
-                <span className="w-11 h-11 rounded-full bg-primary/10 text-primary grid place-items-center transition-colors group-hover:bg-primary group-hover:text-white">
-                  <PhoneIcon className="w-5 h-5" />
-                </span>
-                <span>
-                  <span className="block text-[11px] font-extrabold uppercase tracking-[0.18em] text-mist">Prefer to talk?</span>
-                  <span className="block text-[15.5px] font-extrabold link-line">{CLINIC.phoneDisplay}</span>
-                </span>
-              </a>
-            </Reveal>
           </div>
-        </div>
-
-        {/* Scrolling reasons */}
-        <div className="lg:col-span-7 space-y-5">
-          {REASONS.map((r, i) => {
-            const Icon = REASON_ICONS[r.icon];
-            return (
-              <Reveal key={r.num} delay={i * 90}>
-                <article className="group relative rounded-2xl border border-foam bg-white p-7 sm:p-8 transition-all duration-400 hover:border-sky-brand/50 hover:shadow-lift hover:-translate-y-1">
-                  <span className="absolute top-7 right-7 font-display italic font-medium text-[40px] leading-none text-foam group-hover:text-sky-brand/40 transition-colors duration-400 select-none" aria-hidden="true">
-                    {r.num}
-                  </span>
-                  <div className="flex items-start gap-5">
-                    <span className="shrink-0 w-[52px] h-[52px] rounded-2xl bg-foam text-primary grid place-items-center transition-all duration-400 group-hover:bg-primary group-hover:text-white group-hover:rotate-6">
-                      <Icon className="w-6 h-6" />
-                    </span>
-                    <div>
-                      <h3 className="font-display font-semibold text-[21px] text-ink tracking-tight">{r.title}</h3>
-                      <p className="mt-2.5 text-[14.5px] leading-relaxed text-slate-brand font-medium max-w-[58ch]">{r.desc}</p>
-                    </div>
-                  </div>
-                  <span className="absolute bottom-0 left-8 right-8 h-0.5 rounded-full bg-gradient-to-r from-primary to-mint scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500" aria-hidden="true" />
-                </article>
-              </Reveal>
-            );
-          })}
         </div>
       </div>
     </section>
