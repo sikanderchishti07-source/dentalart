@@ -32,6 +32,10 @@ export const IMAGES = {
     "https://image.qwenlm.ai/generated-images/7156f562-e60b-4927-a237-8e8120873dc0/_result.png",
   /* Used only by the Why Us section */
   room: "/images/clinic-interior.jpg",
+  /* Hero background loop plus its first frame */
+  heroVideo: "/images/clinic-loop.mp4",
+  heroVideoWebm: "/images/clinic-loop.webm",
+  heroPoster: "/images/clinic-loop-poster.jpg",
 };
 
 /* ── Services ───────────────────────────────────────────────────── */
