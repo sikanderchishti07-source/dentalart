@@ -27,8 +27,7 @@ export const CLINIC = {
 
 export const IMAGES = {
   hero: "https://image.qwenlm.ai/generated-images/ecf95986-ea74-487b-b222-63614d8eadfc/_result.png",
-  interior:
-    "https://image.qwenlm.ai/generated-images/7156f562-e60b-4927-a237-8e8120873dc0/_result.png",
+  interior: "/images/clinic-interior.jpg",
 };
 
 /* ── Services ───────────────────────────────────────────────────── */
@@ -146,33 +145,27 @@ export type GalleryCase = {
   title: string;
   caption: string;
   result: string;
-  /** Genuine pre-treatment photograph. Tight crop: upper lip to chin. */
-  imgBefore: string;
-  /** Genuine post-treatment photograph of the same patient, same framing. */
-  imgAfter: string;
+  img: string;
 };
 
 export const GALLERY: GalleryCase[] = [
   {
     title: "Teeth Whitening",
     caption: "8 shades brighter in a single in-office visit.",
-    result: "1 visit \u00b7 60 minutes",
-    imgBefore: "/images/case-whitening-before.jpg",
-    imgAfter: "/images/case-whitening-after.jpg",
+    result: "1 visit · 60 minutes",
+    img: "https://image.qwenlm.ai/generated-images/e00d7f66-a0b2-48ca-961d-a6bd1d53a95d/_result.png",
   },
   {
     title: "Dental Implants",
     caption: "A permanent, natural-feeling replacement after tooth loss.",
     result: "Full function restored",
-    imgBefore: "/images/case-implant-before.jpg",
-    imgAfter: "/images/case-implant-after.jpg",
+    img: "https://image.qwenlm.ai/generated-images/f1f874c1-583e-43eb-8c9a-dc4c967ef287/_result.png",
   },
   {
     title: "Porcelain Veneers",
     caption: "A complete smile makeover, custom-shaded in two visits.",
-    result: "2 visits \u00b7 10 veneers",
-    imgBefore: "/images/case-veneers-before.jpg",
-    imgAfter: "/images/case-veneers-after.jpg",
+    result: "2 visits · 10 veneers",
+    img: "https://image.qwenlm.ai/generated-images/6ffe7efa-5e14-4171-a38b-26decdd7638c/_result.png",
   },
 ];
 
