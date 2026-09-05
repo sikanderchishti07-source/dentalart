@@ -50,18 +50,18 @@ export default function Hero() {
           className="relative mt-[70px] h-[280px] sm:h-[360px] lg:mt-0 lg:absolute lg:inset-y-0 lg:right-0 lg:h-auto lg:w-[52%]"
           aria-hidden="true"
         >
-          <div className="absolute inset-0 lg:[clip-path:polygon(14%_0,100%_0,100%_100%,0_100%)]">
+          <div className="absolute inset-0 lg:[mask-image:linear-gradient(90deg,transparent_0%,rgba(0,0,0,0.5)_14%,black_34%)]">
             {reduceMotion ? (
               <img
                 src={IMAGES.heroPoster}
                 alt=""
-                className="h-full w-full object-cover"
+                className="h-full w-full object-cover [object-position:18%_center]"
                 loading="eager"
                 fetchPriority="high"
               />
             ) : (
               <video
-                className="h-full w-full object-cover"
+                className="h-full w-full object-cover [object-position:18%_center]"
                 poster={IMAGES.heroPoster}
                 autoPlay
                 muted
@@ -76,7 +76,7 @@ export default function Hero() {
               </video>
             )}
             {/* Wash so the photo never fights the headline */}
-            <div className="absolute inset-0 bg-gradient-to-r from-paper via-paper/10 to-transparent lg:from-paper/80 lg:via-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-r from-paper via-paper/10 to-transparent lg:from-transparent lg:via-transparent" />
           </div>
         </div>
 
