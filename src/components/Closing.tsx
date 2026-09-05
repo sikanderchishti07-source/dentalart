@@ -383,16 +383,19 @@ export function Footer() {
         <div className="grid sm:grid-cols-2 lg:grid-cols-12 gap-12">
           {/* Brand */}
           <div className="lg:col-span-4">
-            <a href="#top" className="flex items-center gap-2.5">
-              <span className="w-10 h-10 rounded-[14px] bg-primary text-white grid place-items-center">
-                <ToothIcon className="w-[22px] h-[22px]" />
-              </span>
-              <span className="font-display font-semibold text-[20px] tracking-tight">
-                DentalArt<span className="text-sky-brand"> Care</span>
-              </span>
+            <a
+              href="#top"
+              className="inline-block rounded-2xl bg-white p-3 shadow-[0_18px_40px_-22px_rgba(0,0,0,0.6)]"
+            >
+              <img
+                src="/images/dac-card.jpg"
+                alt="DentalArt Care"
+                className="h-[92px] w-auto rounded-lg"
+                loading="lazy"
+              />
             </a>
             <p className="mt-5 text-[13.5px] leading-relaxed text-paper/60 font-medium max-w-[40ch]">
-              {CLINIC.tagline} Premium dentistry for the whole family — calm
+              {CLINIC.tagline} Premium dentistry for the whole family: calm
               rooms, honest plans and results worth smiling about.
             </p>
             <div className="flex gap-3 mt-6">
