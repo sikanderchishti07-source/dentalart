@@ -44,13 +44,13 @@ export default function Hero() {
       className="relative overflow-hidden bg-paper"
     >
       {/* ── Split canvas: copy left, clinic photo bleeding right ── */}
-      <div className="relative lg:min-h-[640px]">
+      <div className="relative lg:min-h-[560px]">
         {/* Photo panel — diagonal edge on desktop, full-width band on mobile */}
         <div
-          className="relative mt-[70px] h-[280px] sm:h-[360px] lg:mt-0 lg:absolute lg:inset-y-0 lg:right-0 lg:h-auto lg:w-[52%]"
+          className="relative mt-[70px] h-[280px] sm:h-[360px] lg:mt-0 lg:absolute lg:inset-y-0 lg:right-0 lg:h-auto lg:w-[70%]"
           aria-hidden="true"
         >
-          <div className="absolute inset-0 lg:[mask-image:linear-gradient(90deg,transparent_0%,rgba(0,0,0,0.5)_14%,black_34%)]">
+          <div className="absolute inset-0 lg:[mask-image:linear-gradient(90deg,transparent_0%,rgba(0,0,0,0.35)_20%,rgba(0,0,0,0.85)_38%,black_46%)]">
             {reduceMotion ? (
               <img
                 src={IMAGES.heroPoster}
@@ -88,7 +88,7 @@ export default function Hero() {
 
         {/* Copy column */}
         <div className="relative mx-auto max-w-7xl px-6 lg:px-10">
-          <div className="max-w-[36rem] pb-14 pt-10 lg:pb-24 lg:pt-36">
+          <div className="max-w-[36rem] pb-14 pt-10 lg:pb-16 lg:pt-28">
             <span className="mb-7 inline-flex items-center gap-2.5 rounded-full border border-mint/40 bg-mint/10 px-4 py-1.5">
               <span className="pulse-ring relative h-2 w-2 rounded-full bg-moss text-moss" />
               <span className="text-[11px] font-extrabold tracking-[0.2em] text-moss">
