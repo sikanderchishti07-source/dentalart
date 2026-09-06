@@ -50,29 +50,30 @@ export default function Preloader() {
   return (
     <div
       aria-hidden="true"
-      className={`fixed inset-0 z-[100] grid place-items-center bg-paper transition-opacity duration-500 ${
+      className={`fixed inset-0 z-[100] grid place-items-center bg-white transition-opacity duration-500 ${
         leaving ? "opacity-0" : "opacity-100"
       }`}
     >
       {/* soft brand glow */}
       <div
-        className="absolute inset-0 bg-[radial-gradient(38rem_26rem_at_50%_45%,rgba(2,136,209,0.12),transparent_65%)]"
+        className="absolute inset-0 bg-[radial-gradient(40rem_28rem_at_50%_45%,rgba(2,136,209,0.10),transparent_68%)]"
       />
 
-      <div className="relative flex flex-col items-center">
-        {/* slowly turning ring, echoing the gold arc */}
-        <span className="absolute h-[236px] w-[236px] rounded-full border border-primary/15" />
-        <span className="absolute h-[236px] w-[236px] animate-spin-slow rounded-full border border-transparent border-t-[#C9A227]/70" />
+      <div className="relative grid place-items-center">
+        {/* two concentric rings, the outer one turning slowly */}
+        <span className="absolute h-[300px] w-[300px] rounded-full border border-primary/12 sm:h-[400px] sm:w-[400px]" />
+        <span className="absolute h-[300px] w-[300px] animate-spin-slow rounded-full border border-transparent border-t-[#C9A227] sm:h-[400px] sm:w-[400px]" />
+        
 
         <img
-          src="/images/dac-card.jpg"
+          src="/images/dac-splash.jpg"
           alt="DentalArt Care"
-          className="h-[150px] w-auto rounded-xl"
+          className="relative h-[230px] w-auto mix-blend-multiply sm:h-[310px]"
         />
       </div>
 
       {/* thin progress line */}
-      <div className="absolute bottom-[18%] h-px w-56 overflow-hidden bg-ink/10">
+      <div className="absolute bottom-[16%] h-[2px] w-64 overflow-hidden rounded-full bg-ink/10 sm:w-80">
         <span className="preloader-line block h-full w-1/3 bg-primary" />
       </div>
     </div>
