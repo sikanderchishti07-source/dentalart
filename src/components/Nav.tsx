@@ -118,9 +118,9 @@ export default function Nav() {
             aria-label="DentalArt Care — home"
           >
             <img
-              src="/images/dac-mark-wide.png"
+              src="/images/dac-mark-white.jpg"
               alt=""
-              className="h-12 w-auto shrink-0 transition-transform duration-300 group-hover:scale-105"
+              className="h-[46px] w-auto shrink-0 mix-blend-multiply transition-transform duration-300 group-hover:scale-105"
             />
             <span className="leading-none">
               <span className="block font-display text-[19px] font-semibold tracking-tight text-ink">
