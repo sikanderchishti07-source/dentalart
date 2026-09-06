@@ -7,7 +7,6 @@ import {
   ShieldIcon,
   CalendarIcon,
   CheckIcon,
-  ToothIcon,
   SparkleIcon,
   PhoneIcon,
   ArrowRightIcon,
@@ -185,10 +184,13 @@ export function Booking() {
               </div>
             ) : (
               <form onSubmit={submit} noValidate aria-label="Appointment request form">
-                <div className="flex items-center gap-3 mb-7">
-                  <span className="w-10 h-10 rounded-xl bg-primary/10 text-primary grid place-items-center">
-                    <ToothIcon className="w-5 h-5" />
-                  </span>
+                <div className="flex items-center gap-3.5 mb-7">
+                  <img
+                    src="/images/dac-card.jpg"
+                    alt="DentalArt Care"
+                    className="h-12 w-auto shrink-0 rounded-lg border border-foam"
+                    loading="lazy"
+                  />
                   <div>
                     <h3 className="font-display font-semibold text-[21px] text-ink leading-tight tracking-tight">Request an appointment</h3>
                     <p className="text-[12px] font-bold text-mist">Sent via WhatsApp · takes 30 seconds</p>

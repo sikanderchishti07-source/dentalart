@@ -181,3 +181,10 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   .marquee-track { animation: none; }
   .pulse-ring::after { display: none; }
 }
+
+/* Preloader progress line */
+@keyframes preloader-slide {
+  0%   { transform: translateX(-110%); }
+  100% { transform: translateX(320%); }
+}
+.preloader-line { animation: preloader-slide 1.1s cubic-bezier(0.4, 0, 0.2, 1) infinite; }

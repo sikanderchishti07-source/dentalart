@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import Preloader from "./components/Preloader";
 import Nav from "./components/Nav";
 import Hero from "./components/Hero";
 import { Marquee, Stats, WhyUs, Services } from "./components/Sections";
@@ -104,6 +105,7 @@ export default function App() {
     <BrowserRouter>
       <HashScroll />
       <div className="noise min-h-screen">
+        <Preloader />
         <Nav />
         <Routes>
           <Route path="/" element={<HomePage />} />
