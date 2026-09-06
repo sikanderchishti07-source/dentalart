@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { CLINIC } from "../data";
 import {
-  ToothIcon,
   PhoneIcon,
   ClockIcon,
   PinIcon,
@@ -118,8 +117,12 @@ export default function Nav() {
             className="group flex shrink-0 items-center gap-3 rounded-2xl bg-deep px-4 py-2.5 shadow-[0_12px_26px_-14px_rgba(4,29,48,0.6)] ring-1 ring-white/10 transition-shadow duration-300"
             aria-label="DentalArt Care — home"
           >
-            <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-white/10 text-white">
-              <ToothIcon className="h-[21px] w-[21px]" />
+            <span className="grid shrink-0 place-items-center overflow-hidden rounded-xl bg-white px-2 py-1.5">
+              <img
+                src="/images/dac-mark-white.jpg"
+                alt=""
+                className="h-8 w-auto mix-blend-multiply"
+              />
             </span>
             <span className="leading-none">
               <span className="block font-display text-[19px] font-semibold tracking-tight text-white">
