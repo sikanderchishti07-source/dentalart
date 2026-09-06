@@ -117,13 +117,11 @@ export default function Nav() {
             className="group flex shrink-0 items-center gap-2.5"
             aria-label="DentalArt Care — home"
           >
-            <span className="relative grid h-11 w-11 shrink-0 place-items-center overflow-hidden rounded-[14px] border border-foam bg-white shadow-[0_6px_16px_-8px_rgba(4,29,48,0.35)] transition-transform duration-300 group-hover:-rotate-6 group-hover:scale-105">
-              <img
-                src="/images/dac-icon.jpg"
-                alt=""
-                className="h-[34px] w-auto object-contain"
-              />
-            </span>
+            <img
+              src="/images/dac-mark-wide.png"
+              alt=""
+              className="h-12 w-auto shrink-0 transition-transform duration-300 group-hover:scale-105"
+            />
             <span className="leading-none">
               <span className="block font-display text-[19px] font-semibold tracking-tight text-ink">
                 DentalArt<span className="text-primary"> Care</span>

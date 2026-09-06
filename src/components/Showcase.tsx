@@ -233,7 +233,7 @@ export function Team() {
           </Reveal>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto lg:max-w-none">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto lg:max-w-none">
           {DOCTORS.map((d, i) => (
             <DoctorCard key={d.name} doc={d} delay={i * 130} />
           ))}

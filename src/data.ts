@@ -136,6 +136,14 @@ export const DOCTORS: Doctor[] = [
     bio: "BDS (2021) with Distinction in Oral Pathology. Compassionate care in preventive and restorative dentistry, extractions, scaling, dental emergencies and long-term oral health.",
     img: "https://dentalartscare.vercel.app/images/doc3.jpeg",
   },
+  {
+    name: "Dr. Khwaja Ahmad Aman",
+    role: "General Dentist",
+    credentials: "BDS",
+    tags: ["Fillings", "Preventive", "Check-ups"],
+    bio: "Handles everyday dental care: examinations, fillings, scaling and routine treatment. Takes time to explain what he finds and what your options are before anything starts.",
+    img: "/images/doc-aman.jpg",
+  },
 ];
 
 /* ── Stats ──────────────────────────────────────────────────────── */
