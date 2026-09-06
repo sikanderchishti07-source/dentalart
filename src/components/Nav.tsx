@@ -114,23 +114,28 @@ export default function Nav() {
           {/* Logo */}
           <a
             href="#top"
-            className="group flex shrink-0 items-center gap-3 rounded-2xl bg-deep px-4 py-2.5 shadow-[0_12px_26px_-14px_rgba(4,29,48,0.6)] ring-1 ring-white/10 transition-shadow duration-300"
-            aria-label="DentalArt Care — home"
+            className="group flex shrink-0 flex-col justify-center leading-none"
+            aria-label="DentalArt Care, home"
           >
-            <span className="grid shrink-0 place-items-center overflow-hidden rounded-xl bg-white px-2 py-1.5">
-              <img
-                src="/images/dac-mark-white.jpg"
-                alt=""
-                className="h-8 w-auto mix-blend-multiply"
-              />
+            
+            <span className="font-display text-[22px] font-semibold leading-none tracking-tight text-ink">
+              DentalArt<span className="text-primary"> Care</span>
             </span>
-            <span className="leading-none">
-              <span className="block font-display text-[19px] font-semibold tracking-tight text-white">
-                DentalArt<span className="text-sky-brand"> Care</span>
-              </span>
-              <span className="mt-1 block text-[9.5px] font-bold uppercase tracking-[0.3em] text-sky-brand/75">
-                Smile Studio
-              </span>
+            <svg
+              viewBox="0 0 200 10"
+              className="mt-1.5 h-[7px] w-[168px] text-[#C9A227]"
+              fill="none"
+              aria-hidden="true"
+            >
+              <path
+                d="M2 7C40 2.5 160 2.5 198 7"
+                stroke="currentColor"
+                strokeWidth="2.4"
+                strokeLinecap="round"
+              />
+            </svg>
+            <span className="mt-1.5 text-[9.5px] font-bold uppercase leading-none tracking-[0.34em] text-mist">
+              Smile Studio
             </span>
           </a>
 
