@@ -114,7 +114,7 @@ export default function Nav() {
           {/* Logo */}
           <a
             href="#top"
-            className="group flex shrink-0 items-center gap-2.5"
+            className="group flex shrink-0 items-center gap-3 rounded-2xl border border-foam bg-white px-3.5 py-2 shadow-[0_10px_24px_-16px_rgba(4,29,48,0.45)] transition-shadow duration-300 hover:shadow-[0_14px_30px_-16px_rgba(4,29,48,0.55)]"
             aria-label="DentalArt Care — home"
           >
             <img
