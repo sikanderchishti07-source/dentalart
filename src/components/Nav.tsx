@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { CLINIC } from "../data";
 import {
+  ToothIcon,
   PhoneIcon,
   ClockIcon,
   PinIcon,
@@ -114,19 +115,17 @@ export default function Nav() {
           {/* Logo */}
           <a
             href="#top"
-            className="group flex shrink-0 items-center gap-3 rounded-2xl border border-foam bg-white px-3.5 py-2 shadow-[0_10px_24px_-16px_rgba(4,29,48,0.45)] transition-shadow duration-300 hover:shadow-[0_14px_30px_-16px_rgba(4,29,48,0.55)]"
+            className="group flex shrink-0 items-center gap-3 rounded-2xl bg-deep px-4 py-2.5 shadow-[0_12px_26px_-14px_rgba(4,29,48,0.6)] ring-1 ring-white/10 transition-shadow duration-300"
             aria-label="DentalArt Care — home"
           >
-            <img
-              src="/images/dac-mark-white.jpg"
-              alt=""
-              className="h-[46px] w-auto shrink-0 mix-blend-multiply transition-transform duration-300 group-hover:scale-105"
-            />
+            <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-white/10 text-white">
+              <ToothIcon className="h-[21px] w-[21px]" />
+            </span>
             <span className="leading-none">
-              <span className="block font-display text-[19px] font-semibold tracking-tight text-ink">
-                DentalArt<span className="text-primary"> Care</span>
+              <span className="block font-display text-[19px] font-semibold tracking-tight text-white">
+                DentalArt<span className="text-sky-brand"> Care</span>
               </span>
-              <span className="mt-1 block text-[9.5px] font-bold uppercase tracking-[0.3em] text-mist">
+              <span className="mt-1 block text-[9.5px] font-bold uppercase tracking-[0.3em] text-sky-brand/75">
                 Smile Studio
               </span>
             </span>
@@ -217,7 +216,7 @@ export default function Nav() {
         >
           <div className="mb-8 flex items-center justify-between">
             <span className="font-display text-lg font-semibold text-ink">
-              DentalArt<span className="text-primary"> Care</span>
+              DentalArt<span className="text-sky-brand"> Care</span>
             </span>
             <button
               onClick={() => setOpen(false)}
