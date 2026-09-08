@@ -123,13 +123,30 @@ export default function Nav() {
             </span>
             <svg
               viewBox="0 0 200 10"
-              className="mt-1.5 h-[7px] w-[168px] text-[#C9A227]"
+              className="mt-1.5 h-[7px] w-[168px]"
               fill="none"
               aria-hidden="true"
             >
+              <defs>
+                <linearGradient id="dacGold" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0%" stopColor="#C9A227" />
+                  <stop offset="42%" stopColor="#C9A227" />
+                  <stop offset="50%" stopColor="#FFF3C4" />
+                  <stop offset="58%" stopColor="#C9A227" />
+                  <stop offset="100%" stopColor="#C9A227" />
+                  <animateTransform
+                    attributeName="gradientTransform"
+                    type="translate"
+                    values="-1 0; 1 0"
+                    dur="2.4s"
+                    repeatCount="indefinite"
+                    calcMode="linear"
+                  />
+                </linearGradient>
+              </defs>
               <path
                 d="M2 7C40 2.5 160 2.5 198 7"
-                stroke="currentColor"
+                stroke="url(#dacGold)"
                 strokeWidth="2.4"
                 strokeLinecap="round"
               />
