@@ -36,7 +36,7 @@ function BeforeAfter({ item, delay }: { item: GalleryCase; delay: number }) {
   const stop = () => (dragging.current = false);
 
   return (
-    <Reveal delay={delay} variant="pop">
+    <Reveal delay={delay} variant="pop" className="h-full">
       <figure className="group rounded-3xl bg-white border border-foam shadow-card overflow-hidden transition-all duration-500 hover:shadow-lift hover:-translate-y-1.5">
         {/* Compare surface */}
         <div
@@ -158,9 +158,10 @@ export function Gallery() {
 function DoctorCard({ doc, delay }: { doc: (typeof DOCTORS)[number]; delay: number }) {
   const [open, setOpen] = useState(false);
   return (
-    <Reveal delay={delay} variant="pop">
+    <Reveal delay={delay} variant="pop" className="h-full">
       <article
-        className="group relative rounded-t-[160px] rounded-b-3xl overflow-hidden bg-white border border-foam shadow-card cursor-pointer transition-all duration-500 hover:shadow-lift hover:-translate-y-1.5 focus-within:shadow-lift"
+        style={{ aspectRatio: "3 / 3.9" }}
+        className="group relative flex h-full flex-col rounded-t-[160px] rounded-b-3xl overflow-hidden bg-white border border-foam shadow-card cursor-pointer transition-all duration-500 hover:shadow-lift hover:-translate-y-1.5 focus-within:shadow-lift"
         onClick={() => setOpen((o) => !o)}
         tabIndex={0}
         onKeyDown={(e) => {
@@ -174,21 +175,21 @@ function DoctorCard({ doc, delay }: { doc: (typeof DOCTORS)[number]; delay: numb
         <img
           src={doc.img}
           alt={`${doc.name}, ${doc.role} at DentalArt Care`}
-          className="w-full aspect-[3/3.6] object-cover object-top transition-transform duration-700 group-hover:scale-[1.04]"
+          className="h-full w-full flex-1 object-cover object-top transition-transform duration-700 group-hover:scale-[1.04]"
           loading="lazy"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-deep/85 via-deep/20 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-deep/95 via-deep/60 via-45% to-transparent to-72%" />
 
         {/* Front info */}
         <div className={`absolute inset-x-0 bottom-0 p-7 transition-all duration-500 ${open ? "opacity-0 translate-y-3 pointer-events-none" : "opacity-100"}`}>
-          <h3 className="font-display font-semibold text-[22px] text-paper tracking-tight">{doc.name}</h3>
-          <p className="text-[12px] font-extrabold uppercase tracking-[0.16em] text-sky-brand mt-1">{doc.role}</p>
+          <h3 className="font-display font-semibold text-[21px] text-paper tracking-tight [text-shadow:0_1px_10px_rgba(4,29,48,0.55)]">{doc.name}</h3>
+          <p className="text-[11.5px] font-extrabold uppercase tracking-[0.16em] text-sky-brand mt-1 [text-shadow:0_1px_8px_rgba(4,29,48,0.6)]">{doc.role}</p>
           <div className="flex flex-wrap gap-1.5 mt-3.5">
             {doc.tags.map((t) => (
               <span key={t} className="rounded-full bg-white/15 backdrop-blur px-2.5 py-1 text-[10.5px] font-bold text-paper">{t}</span>
             ))}
           </div>
-          <p className="mt-3.5 text-[11px] font-bold text-paper/60 uppercase tracking-[0.14em]">Tap for biography ↓</p>
+          <p className="mt-3.5 text-[10.5px] font-bold text-paper/75 uppercase tracking-[0.14em] [text-shadow:0_1px_8px_rgba(4,29,48,0.6)]">Tap for biography ↓</p>
         </div>
 
         {/* Bio overlay */}
@@ -218,7 +219,7 @@ export function Team() {
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         <div className="grid lg:grid-cols-12 gap-8 items-end mb-16">
           <Reveal className="lg:col-span-7">
-            <Eyebrow>Our specialists</Eyebrow>
+            <Eyebrow>Our team</Eyebrow>
             <h2 id="doctors-heading" className="font-display font-semibold text-ink text-[34px] sm:text-[46px] leading-[1.06] tracking-tight mt-5">
               Hands you can{" "}
               <em className="italic font-medium text-primary">trust,</em>
@@ -227,8 +228,9 @@ export function Team() {
           </Reveal>
           <Reveal delay={140} className="lg:col-span-5">
             <p className="text-[15px] leading-relaxed text-slate-brand font-medium lg:pb-2">
-              Board-certified specialists with decades of combined experience,
-              and the patience to explain everything before they touch a thing.
+              Postgraduate-qualified specialists for surgery and orthodontics,
+              alongside general dentists for everyday care, and the patience to
+              explain everything before they touch a thing.
             </p>
           </Reveal>
         </div>
