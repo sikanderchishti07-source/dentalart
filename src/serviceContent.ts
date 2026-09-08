@@ -124,7 +124,7 @@ export const SERVICE_PAGES: ServicePageContent[] = [
         when: "2 visits, 2 weeks apart",
       },
     ],
-    showCosts: true,
+    showCosts: false,
     costIntro:
       "The price depends on how many implants you need, whether the bone needs building up first, and the type of crown. These are our ranges. You will get one fixed figure after the scan, and nothing is added later.",
     costs: [
@@ -225,7 +225,7 @@ export const SERVICE_PAGES: ServicePageContent[] = [
         when: "12 to 30 months in",
       },
     ],
-    showCosts: true,
+    showCosts: false,
     costIntro:
       "Orthodontic cost depends on how far the teeth have to move and which appliance you choose, not on how long you are in treatment. Most patients pay monthly across the treatment rather than upfront.",
     costs: [
@@ -325,7 +325,7 @@ export const SERVICE_PAGES: ServicePageContent[] = [
         when: "90 minutes",
       },
     ],
-    showCosts: true,
+    showCosts: false,
     costIntro:
       "Veneers are priced per tooth. Most people need six to ten across the front to get an even result, since treating only one or two makes shade matching considerably harder.",
     costs: [
@@ -425,7 +425,7 @@ export const SERVICE_PAGES: ServicePageContent[] = [
         when: "Same visit",
       },
     ],
-    showCosts: true,
+    showCosts: false,
     costIntro:
       "One in-clinic session is enough for most people. Home top-up trays are useful afterwards for maintaining the result rather than achieving it.",
     costs: [
@@ -526,7 +526,7 @@ export const SERVICE_PAGES: ServicePageContent[] = [
         when: "2 to 4 weeks after",
       },
     ],
-    showCosts: true,
+    showCosts: false,
     costIntro:
       "Cost depends on which tooth is involved, because front teeth have one canal while molars have three or four. The crown afterwards is priced separately.",
     costs: [
@@ -627,7 +627,7 @@ export const SERVICE_PAGES: ServicePageContent[] = [
         when: "5 minutes",
       },
     ],
-    showCosts: true,
+    showCosts: false,
     costIntro:
       "A routine scale and polish is a single appointment. Deep cleaning for established gum disease is priced by quadrant, since it takes considerably longer and needs anaesthetic.",
     costs: [
