@@ -170,7 +170,7 @@ export default function Hero() {
       </div>
 
       {/* ── Proof bar: real numbers, spanning the full width ── */}
-      <div className="relative mx-auto max-w-7xl px-6 pb-16 lg:px-10 lg:pb-20">
+      <div className="relative mx-auto hidden max-w-7xl px-6 pb-16 sm:block lg:px-10 lg:pb-20">
         <div className="grid divide-y divide-foam rounded-3xl border border-foam bg-white/95 shadow-lift backdrop-blur sm:grid-cols-3 sm:divide-x sm:divide-y-0">
           {PROOF.map((p, i) => (
             <div key={p.label} className="flex items-center gap-4 px-7 py-6">

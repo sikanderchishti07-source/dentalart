@@ -478,7 +478,7 @@ export function Footer() {
       <button
         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
         aria-label="Back to top"
-        className={`fixed bottom-6 left-6 z-40 w-11 h-11 rounded-full bg-ink text-paper grid place-items-center shadow-lift transition-all duration-400 hover:bg-primary ${
+        className={`fixed bottom-6 left-6 z-40 hidden h-11 w-11 place-items-center rounded-full bg-ink text-paper shadow-lift transition-all duration-400 hover:bg-primary sm:grid ${
           showTop ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 pointer-events-none"
         }`}
       >

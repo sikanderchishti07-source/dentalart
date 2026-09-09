@@ -106,8 +106,8 @@ export default function Nav() {
         aria-label="Main navigation"
         className={`border-b transition-all duration-500 ${
           scrolled || onDarkHero
-            ? "border-foam bg-paper/90 shadow-[0_8px_30px_-18px_rgba(4,29,48,0.25)] backdrop-blur-xl"
-            : "border-transparent bg-gradient-to-b from-paper/80 to-transparent backdrop-blur-[2px]"
+            ? "border-foam bg-paper shadow-[0_8px_30px_-18px_rgba(4,29,48,0.25)] lg:bg-paper/90 lg:backdrop-blur-xl"
+            : "border-transparent bg-paper lg:bg-gradient-to-b lg:from-paper/80 lg:to-transparent lg:backdrop-blur-[2px]"
         }`}
       >
         <div className="mx-auto flex h-[70px] max-w-7xl items-center justify-between gap-6 px-6 lg:px-10">
