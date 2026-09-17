@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
+import { trackTreatmentView } from "../track";
 import { getServicePage } from "../serviceContent";
 import { CLINIC } from "../data";
 import { Reveal } from "../ui";
@@ -33,6 +34,7 @@ export default function ServicePage() {
     if (!page) return;
     window.scrollTo(0, 0);
     document.title = page.metaTitle;
+    trackTreatmentView(page.slug, page.navLabel);
 
     const setMeta = (selector: string, attr: string, value: string, content: string) => {
       let el = document.head.querySelector<HTMLMetaElement>(selector);

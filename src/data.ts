@@ -15,6 +15,11 @@ export const CLINIC = {
   phone2Display: "+92 329 1271907",
   phone2Href: "tel:+923291271907",
   email: "dentalartcare.pk@gmail.com",
+  /* Fill these in once the clinic's Page and profile exist. While they
+     are empty strings the footer icons are hidden rather than pointing
+     at facebook.com and instagram.com, which is where they used to go. */
+  facebookUrl: "",
+  instagramUrl: "",
   address: "48-C, Block Al-Kabir Town Phase 2, Raiwind Road, Lahore",
   city: "Lahore",
   hours: [

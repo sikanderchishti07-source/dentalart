@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState, type FormEvent } from "react";
+import { trackBooking } from "../track";
 import { CLINIC, FAQS, SERVICE_OPTIONS } from "../data";
 import { Reveal, Eyebrow } from "../ui";
 import {
@@ -80,6 +81,7 @@ export function Booking() {
       .filter(Boolean)
       .join("\n");
     const url = `https://wa.me/${CLINIC.whatsappNumber}?text=${encodeURIComponent(msg)}`;
+    trackBooking(service);
     setWaUrl(url);
     setSent(true);
     window.open(url, "_blank", "noopener,noreferrer");
@@ -401,12 +403,16 @@ export function Footer() {
               rooms, honest plans and results worth smiling about.
             </p>
             <div className="flex gap-3 mt-6">
-              <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="w-10 h-10 rounded-full border border-paper/15 grid place-items-center text-paper/70 hover:bg-primary hover:border-primary hover:text-white transition-all duration-300">
-                <FacebookIcon className="w-4.5 h-4.5 w-[18px] h-[18px]" />
-              </a>
-              <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="w-10 h-10 rounded-full border border-paper/15 grid place-items-center text-paper/70 hover:bg-primary hover:border-primary hover:text-white transition-all duration-300">
-                <InstagramIcon className="w-4.5 h-4.5 w-[18px] h-[18px]" />
-              </a>
+              {CLINIC.facebookUrl && (
+                <a href={CLINIC.facebookUrl} target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="w-10 h-10 rounded-full border border-paper/15 grid place-items-center text-paper/70 hover:bg-primary hover:border-primary hover:text-white transition-all duration-300">
+                  <FacebookIcon className="w-[18px] h-[18px]" />
+                </a>
+              )}
+              {CLINIC.instagramUrl && (
+                <a href={CLINIC.instagramUrl} target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="w-10 h-10 rounded-full border border-paper/15 grid place-items-center text-paper/70 hover:bg-primary hover:border-primary hover:text-white transition-all duration-300">
+                  <InstagramIcon className="w-[18px] h-[18px]" />
+                </a>
+              )}
               <a href={CLINIC.whatsappHref} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" className="w-10 h-10 rounded-full border border-paper/15 grid place-items-center text-paper/70 hover:bg-wa hover:border-wa hover:text-white transition-all duration-300">
                 <WhatsAppIcon className="w-4.5 h-4.5 w-[18px] h-[18px]" />
               </a>

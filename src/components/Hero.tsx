@@ -9,7 +9,7 @@ import {
   WhatsAppIcon,
 } from "../icons";
 
-/* Trust pillars — qualitative reassurance, shown before the numbers */
+/* Trust pillars: qualitative reassurance, shown before the numbers */
 const PILLARS = [
   {
     Icon: ShieldIcon,
@@ -34,6 +34,30 @@ const PROOF = [
   { value: "4.9", label: "Average rating", sub: "from patient reviews" },
 ];
 
+/* Rendered twice: inside the copy column on desktop, and on the paper
+   background below the cover on mobile, where the cover has no room for it. */
+function Pillars() {
+  return (
+    <ul className="grid gap-x-6 gap-y-5 sm:grid-cols-3">
+      {PILLARS.map(({ Icon, title, desc }) => (
+        <li key={title} className="flex items-start gap-3">
+          <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-primary/10 text-primary">
+            <Icon className="h-[18px] w-[18px]" />
+          </span>
+          <span className="leading-tight">
+            <span className="block text-[13px] font-extrabold text-ink">
+              {title}
+            </span>
+            <span className="block text-[12px] font-semibold text-mist">
+              {desc}
+            </span>
+          </span>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
 export default function Hero() {
   const reduceMotion = usePrefersReducedMotion();
 
@@ -43,11 +67,14 @@ export default function Hero() {
       aria-label="Introduction"
       className="relative overflow-hidden bg-paper"
     >
-      {/* ── Split canvas: copy left, clinic photo bleeding right ── */}
-      <div className="relative lg:min-h-[560px]">
-        {/* Photo panel — diagonal edge on desktop, full-width band on mobile */}
+      {/* ── Split canvas on desktop, full-bleed cover on mobile ──
+          Mobile: the photo fills the whole block and the copy sits on top of
+          it, anchored to the bottom. Desktop is unchanged: copy on the left,
+          photo bleeding off the right behind a diagonal mask. */}
+      <div className="relative flex min-h-[92svh] flex-col justify-end lg:block lg:min-h-[560px]">
+        {/* Photo panel */}
         <div
-          className="relative mt-[70px] h-[280px] sm:h-[360px] lg:mt-0 lg:absolute lg:inset-y-0 lg:right-0 lg:h-auto lg:w-[70%]"
+          className="absolute inset-0 lg:inset-y-0 lg:left-auto lg:right-0 lg:w-[70%]"
           aria-hidden="true"
         >
           <div className="absolute inset-0 lg:[mask-image:linear-gradient(90deg,transparent_0%,rgba(0,0,0,0.35)_20%,rgba(0,0,0,0.85)_38%,black_46%)]">
@@ -55,13 +82,13 @@ export default function Hero() {
               <img
                 src={IMAGES.heroPoster}
                 alt=""
-                className="h-full w-full object-cover [object-position:18%_center]"
+                className="h-full w-full object-cover object-center lg:[object-position:18%_center]"
                 loading="eager"
                 fetchPriority="high"
               />
             ) : (
               <video
-                className="h-full w-full object-cover [object-position:18%_center]"
+                className="h-full w-full object-cover object-center lg:[object-position:18%_center]"
                 poster={IMAGES.heroPoster}
                 autoPlay
                 muted
@@ -75,8 +102,9 @@ export default function Hero() {
                 <source src={IMAGES.heroVideo} type="video/mp4" />
               </video>
             )}
-            {/* Wash so the photo never fights the headline */}
-            <div className="absolute inset-0 bg-gradient-to-r from-paper via-paper/10 to-transparent lg:from-transparent lg:via-transparent" />
+            {/* Vertical wash on mobile so the copy stays readable over the
+                photo. Off on desktop, where the mask already does the blend. */}
+            <div className="hero-fade absolute inset-0" />
           </div>
         </div>
 
@@ -87,8 +115,8 @@ export default function Hero() {
         />
 
         {/* Copy column */}
-        <div className="relative mx-auto max-w-7xl px-6 lg:px-10">
-          <div className="max-w-[36rem] pb-14 pt-10 lg:pb-16 lg:pt-28">
+        <div className="relative mx-auto w-full max-w-7xl px-6 lg:px-10">
+          <div className="max-w-[36rem] pb-9 pt-[86px] lg:pb-16 lg:pt-28">
             <span className="mb-7 inline-flex items-center gap-2.5 rounded-full border border-mint/40 bg-mint/10 px-4 py-1.5">
               <span className="pulse-ring relative h-2 w-2 rounded-full bg-moss text-moss" />
               <span className="text-[11px] font-extrabold tracking-[0.2em] text-moss">
@@ -147,29 +175,20 @@ export default function Hero() {
               </a>
             </div>
 
-            {/* Trust pillars */}
-            <ul className="mt-11 grid gap-x-6 gap-y-5 sm:grid-cols-3">
-              {PILLARS.map(({ Icon, title, desc }) => (
-                <li key={title} className="flex items-start gap-3">
-                  <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-primary/10 text-primary">
-                    <Icon className="h-[18px] w-[18px]" />
-                  </span>
-                  <span className="leading-tight">
-                    <span className="block text-[13px] font-extrabold text-ink">
-                      {title}
-                    </span>
-                    <span className="block text-[12px] font-semibold text-mist">
-                      {desc}
-                    </span>
-                  </span>
-                </li>
-              ))}
-            </ul>
+            {/* Trust pillars, desktop only: on mobile they sit below the cover */}
+            <div className="mt-11 hidden lg:block">
+              <Pillars />
+            </div>
           </div>
         </div>
       </div>
 
-      {/* ── Proof bar: real numbers, spanning the full width ── */}
+      {/* Trust pillars, mobile only */}
+      <div className="mx-auto max-w-7xl px-6 pb-4 pt-9 lg:hidden">
+        <Pillars />
+      </div>
+
+      {/* ── Proof bar ── */}
       <div className="relative mx-auto hidden max-w-7xl px-6 pb-16 sm:block lg:px-10 lg:pb-20">
         <div className="grid divide-y divide-foam rounded-3xl border border-foam bg-white/95 shadow-lift backdrop-blur sm:grid-cols-3 sm:divide-x sm:divide-y-0">
           {PROOF.map((p, i) => (
@@ -197,7 +216,7 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Smile-curve divider (kept from the original hero) */}
+      {/* Smile-curve divider */}
       <div className="relative" aria-hidden="true">
         <svg
           viewBox="0 0 1440 64"
